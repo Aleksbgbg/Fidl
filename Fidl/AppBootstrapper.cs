@@ -8,6 +8,8 @@
 
     using Fidl.ViewModels;
     using Fidl.ViewModels.Interfaces;
+    using Fidl.ViewModels.Tabs.Start;
+    using Fidl.ViewModels.Tabs.Start.Interfaces;
 
     internal class AppBootstrapper : BootstrapperBase
     {
@@ -32,6 +34,9 @@
             _container.Singleton<IShellViewModel, ShellViewModel>();
             _container.Singleton<IMainViewModel, MainViewModel>();
             _container.Singleton<ITabConductorViewModel, TabConductorViewModel>();
+
+            // Tab ViewModels
+            _container.Singleton<IStartViewModel, StartViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
