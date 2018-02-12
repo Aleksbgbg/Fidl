@@ -8,6 +8,8 @@
 
     using Fidl.ViewModels;
     using Fidl.ViewModels.Interfaces;
+    using Fidl.ViewModels.Tabs.DriveManager;
+    using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
     using Fidl.ViewModels.Tabs.Start;
     using Fidl.ViewModels.Tabs.Start.Interfaces;
 
@@ -37,6 +39,7 @@
 
             // Tab ViewModels
             _container.Singleton<IStartViewModel, StartViewModel>();
+            _container.Singleton<IDriveManagerViewModel, DriveManagerViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

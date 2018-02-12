@@ -1,6 +1,8 @@
 ﻿namespace Fidl.ViewModels.Interfaces
 {
-    internal interface ITabConductorViewModel : IViewModelBase
+    using Caliburn.Micro;
+
+    internal interface ITabConductorViewModel : IConductor, IViewModelBase
     {
     }
 }

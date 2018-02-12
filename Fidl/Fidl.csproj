@@ -73,10 +73,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converters\ResourceConverter.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\DriveManagerViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveManagerViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
     <Compile Include="Views\TabConductorView.xaml.cs">
       <DependentUpon>TabConductorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\DriveManager\DriveManagerView.xaml.cs">
+      <DependentUpon>DriveManagerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
@@ -142,6 +147,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tabs\DriveManager\DriveManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tabs\Start\StartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Hard Drive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets" Condition="Exists('..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets')" />

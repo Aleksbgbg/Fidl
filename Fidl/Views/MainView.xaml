@@ -4,8 +4,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Caliburn="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:Fidl.Converters"
              xmlns:ViewModels="clr-namespace:Fidl.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance ViewModels:MainViewModel}">
-    <ContentControl Caliburn:View.Model="{Binding TabConductorViewModel}"/>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Header="_Exit" Caliburn:Message.Attach="Exit">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource Delete}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            
+            <MenuItem Header="_Navigation" ItemsSource="{Binding TabConductorViewModel.Items}">
+                <MenuItem.Resources>
+                    <!-- Hacky way to prevent only the last child's icon showing. -->
+                    <Image x:Key="MenuIconImage"
+                           x:Shared="false"
+                           Source="{Binding IconName, Mode=OneTime,
+                                    Converter={x:Static Converters:ResourceConverter.Instance}}"/>
+                </MenuItem.Resources>
+
+                <MenuItem.ItemContainerStyle>
+                    <Style TargetType="MenuItem">
+                        <!-- Binds to the Image above. Binding is automatically valid. -->
+                        <Setter Property="Icon" Value="{StaticResource MenuIconImage}"/>
+                        
+                        <Setter Property="Header" Value="{Binding DisplayName, Mode=OneTime}"/>
+                        
+                        <Setter Property="Caliburn:Message.Attach" Value="Navigate"/>
+                    </Style>
+                </MenuItem.ItemContainerStyle>
+            </MenuItem>
+        </Menu>
+
+        <ContentControl Caliburn:View.Model="{Binding TabConductorViewModel}"/>
+    </DockPanel>
 </UserControl>

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ViewModels="clr-namespace:Fidl.ViewModels.Tabs.Start"
+             xmlns:Start="clr-namespace:Fidl.ViewModels.Tabs.Start"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance ViewModels:StartViewModel}">
+             d:DataContext="{d:DesignInstance Start:StartViewModel}">
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <Image DockPanel.Dock="Left" Source="{StaticResource Logo}" Height="200"
                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5"/>
