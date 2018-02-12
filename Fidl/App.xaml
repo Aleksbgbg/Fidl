@@ -1,7 +1,7 @@
 ﻿<Application x:Class="Fidl.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:Fidl="clr-namespace:Fidl">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Fidl="clr-namespace:Fidl">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
