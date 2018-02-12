@@ -8,5 +8,10 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance ViewModels:ShellViewModel}"
         Icon="{StaticResource Logo}">
-		<ContentControl Caliburn:View.Model="{Binding MainViewModel}"/>
+    <Window.InputBindings>
+        <KeyBinding Gesture="Ctrl+Tab" Modifiers="Control" Key="Tab"
+                    Command="{Binding SwitchTabCommand}"/>
+    </Window.InputBindings>
+    
+    <ContentControl Caliburn:View.Model="{Binding MainViewModel}"/>
 </Window>
