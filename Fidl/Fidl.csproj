@@ -69,6 +69,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\TabConductorView.xaml.cs">
+      <DependentUpon>TabConductorView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -77,6 +80,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="ViewModels\Interfaces\ITabConductorViewModel.cs" />
+    <Compile Include="ViewModels\TabConductorViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\Interfaces\ITabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\TabViewModel.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -122,6 +129,10 @@
     <Compile Include="AppBootstrapper.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\TabConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -159,6 +170,7 @@
     <Folder Include="Images\" />
     <Folder Include="Models\" />
     <Folder Include="Services\Interfaces\" />
+    <Folder Include="Views\Tabs\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
