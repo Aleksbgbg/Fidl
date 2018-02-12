@@ -2,7 +2,7 @@
 {
     using Caliburn.Micro;
 
-    internal interface ITabConductorViewModel : IConductor, IViewModelBase
+    internal interface ITabConductorViewModel : IViewModelBase, IConductor
     {
     }
 }

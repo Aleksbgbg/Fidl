@@ -9,5 +9,7 @@
         event EventHandler Navigated;
 
         string IconName { get; }
+
+        void Navigate();
     }
 }
