@@ -53,8 +53,12 @@
       <HintPath>..\packages\Costura.Fody.1.6.2\lib\dotnet\Costura.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="INIFileParser, Version=2.5.2.0, Culture=neutral, PublicKeyToken=79af7b307b65cf3c, processorArchitecture=MSIL">
+      <HintPath>..\packages\ini-parser.2.5.2\lib\net20\INIFileParser.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -72,20 +76,54 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\Tabs\DriveManager\DigitalStorageConverter.cs" />
+    <Compile Include="Converters\Tabs\DriveManager\DriveImageConverter.cs" />
+    <Compile Include="Converters\Tabs\DriveManager\DriveLetterConverter.cs" />
+    <Compile Include="Converters\Tabs\DriveManager\FreeSpacePercentageConverter.cs" />
+    <Compile Include="Converters\Tabs\DriveManager\UsedSpaceColourConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
+    <Compile Include="Factories\DriveFactory.cs" />
+    <Compile Include="Factories\Interfaces\IDriveFactory.cs" />
+    <Compile Include="Helpers\ImageButtonHelper.cs" />
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="Helpers\RunCommandHelper.cs" />
+    <Compile Include="Models\Tabs\DriveManager\Drive.cs" />
+    <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\Interfaces\IDialogService.cs" />
+    <Compile Include="Utilities\ApplicationInfo.cs" />
+    <Compile Include="Utilities\Interfaces\IApplicationInfo.cs" />
+    <Compile Include="ViewModels\DialogViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IDialogViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\DriveConductorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\DriveManagerViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\DriveViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveConductorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveManagerViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
+    <Compile Include="Views\DialogView.xaml.cs">
+      <DependentUpon>DialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TabConductorView.xaml.cs">
       <DependentUpon>TabConductorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\DriveManager\DriveConductorView.xaml.cs">
+      <DependentUpon>DriveConductorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\DriveManager\DriveManagerView.xaml.cs">
       <DependentUpon>DriveManagerView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Tabs\DriveManager\DriveView.xaml.cs">
+      <DependentUpon>DriveView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,7 +185,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tabs\DriveManager\DriveConductorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tabs\DriveManager\DriveManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\DriveManager\DriveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,10 +232,6 @@
   <ItemGroup>
     <Folder Include="EventArgs\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Factories\Interfaces\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
@@ -206,14 +248,24 @@
   <ItemGroup>
     <Resource Include="Images\Delete.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Replace.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Tick.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Camera.png" />
+    <Resource Include="Images\Erase.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets" Condition="Exists('..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.4.1\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.4.1\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
+  <Import Project="..\packages\Fody.2.4.1\build\Fody.targets" Condition="Exists('..\packages\Fody.2.4.1\build\Fody.targets')" />
 </Project>

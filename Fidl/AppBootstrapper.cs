@@ -6,6 +6,12 @@
 
     using Caliburn.Micro;
 
+    using Fidl.Factories;
+    using Fidl.Factories.Interfaces;
+    using Fidl.Services;
+    using Fidl.Services.Interfaces;
+    using Fidl.Utilities;
+    using Fidl.Utilities.Interfaces;
     using Fidl.ViewModels;
     using Fidl.ViewModels.Interfaces;
     using Fidl.ViewModels.Tabs.DriveManager;
@@ -31,15 +37,29 @@
         {
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();
+            _container.Singleton<IDialogService, DialogService>();
+
+            // Register Factories
+            _container.Singleton<IDriveFactory, DriveFactory>();
+
+            // Register Utilities
+            _container.Singleton<IApplicationInfo, ApplicationInfo>();
 
             // Register ViewModels
             _container.Singleton<IShellViewModel, ShellViewModel>();
             _container.Singleton<IMainViewModel, MainViewModel>();
             _container.Singleton<ITabConductorViewModel, TabConductorViewModel>();
 
+            _container.PerRequest<IDialogViewModel, DialogViewModel>();
+
             // Tab ViewModels
+            // Start tab
             _container.Singleton<IStartViewModel, StartViewModel>();
+
+            // Drive Manager tab
             _container.Singleton<IDriveManagerViewModel, DriveManagerViewModel>();
+            _container.Singleton<IDriveConductorViewModel, DriveConductorViewModel>();
+            _container.PerRequest<IDriveViewModel, DriveViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
