@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:Fidl.Converters"
              xmlns:ViewModels="clr-namespace:Fidl.ViewModels"
              mc:Ignorable="d"
@@ -13,12 +14,28 @@
                 <StackPanel Orientation="Horizontal">
                     <Image Source="{Binding IconName, Mode=OneTime,
                         Converter={x:Static Converters:ResourceConverter.Instance}}"
-                           Height="20"
-                           Margin="0, 0, 5, 0"/>
+                           Height="20" Margin="0, 0, 5, 0"/>
                     <TextBlock Text="{Binding DisplayName}"/>
                 </StackPanel>
             </DataTemplate>
         </TabControl.ItemTemplate>
+        
+        <TabControl.ContentTemplate>
+            <DataTemplate>
+                <DockPanel>
+                    <DockPanel DockPanel.Dock="Top" Background="LightGreen">
+                        <Image Source="{Binding IconName, Mode=OneTime,
+                            Converter={x:Static Converters:ResourceConverter.Instance}}" Height="45"/>
+
+                        <TextBlock DockPanel.Dock="Top" Text="{Binding DisplayName}" FontSize="16"
+                                   FontWeight="DemiBold" Margin="5, 5, 5, 0"/>
+                        <TextBlock Text="{Binding Description}" Margin="5, 0, 5, 5"/>
+                    </DockPanel>
+
+                    <ContentControl Caliburn:View.Model="{Binding}"/>
+                </DockPanel>
+            </DataTemplate>
+        </TabControl.ContentTemplate>
         
         <TabControl.ItemContainerStyle>
             <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">

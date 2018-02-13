@@ -7,15 +7,18 @@
 
     internal abstract class TabViewModel : ViewModelBase, ITabViewModel
     {
-        private protected TabViewModel(string iconName)
+        private protected TabViewModel(string iconName, string description)
         {
             DisplayName = Regex.Replace(GetType().Name.Replace("ViewModel", string.Empty), @"(\B[A-Z])", " $1");
             IconName = iconName;
+            Description = description;
         }
 
         public event EventHandler Navigated;
 
         public string IconName { get; }
+
+        public string Description { get; }
 
         public void Navigate()
         {

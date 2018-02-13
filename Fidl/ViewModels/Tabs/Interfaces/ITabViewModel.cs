@@ -10,6 +10,8 @@
 
         string IconName { get; }
 
+        string Description { get; }
+
         void Navigate();
     }
 }
