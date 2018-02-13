@@ -4,7 +4,7 @@
 
     internal class StartViewModel : TabViewModel, IStartViewModel
     {
-        public StartViewModel() : base("Logo")
+        public StartViewModel() : base("Logo", "Welcome to Fidl!")
         {
         }
     }

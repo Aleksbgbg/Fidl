@@ -4,7 +4,7 @@
 
     internal class DriveManagerViewModel : TabViewModel, IDriveManagerViewModel
     {
-        public DriveManagerViewModel(IDriveConductorViewModel driveConductorViewModel) : base("HardDrive")
+        public DriveManagerViewModel(IDriveConductorViewModel driveConductorViewModel) : base("HardDrive", "View and configure various mounted drives.")
         {
             DriveConductorViewModel = driveConductorViewModel;
         }
