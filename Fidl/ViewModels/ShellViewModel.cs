@@ -10,7 +10,7 @@
     {
         public ShellViewModel(IMainViewModel mainViewModel, ITabConductorViewModel tabConductorViewModel, IApplicationInfo applicationInfo)
         {
-            DisplayName = applicationInfo.LaunchedAsAdministrator ? "Fidl" : "Fidl (Administrator)";
+            DisplayName = applicationInfo.LaunchedAsAdministrator ? "Fidl (Administrator)" : "Fidl";
 
             MainViewModel = mainViewModel;
 
