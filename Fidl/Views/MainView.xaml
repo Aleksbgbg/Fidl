@@ -21,15 +21,15 @@
             <MenuItem Header="_Navigation" ItemsSource="{Binding TabConductorViewModel.Items}">
                 <MenuItem.Resources>
                     <!-- Hacky way to prevent only the last child's icon showing. -->
-                    <Image x:Key="MenuIconImage"
-                           x:Shared="false"
+                    <Image x:Key="MenuIconImage" x:Shared="false"
                            Source="{Binding IconName, Mode=OneTime,
                                     Converter={x:Static Converters:ResourceConverter.Instance}}"/>
                 </MenuItem.Resources>
 
                 <MenuItem.ItemContainerStyle>
                     <Style TargetType="MenuItem">
-                        <!-- Binds to the Image above. Binding is automatically valid. -->
+                        <!-- Binds to the Image above. Binding is automatically valid,
+                             even though the resource is always the same. -->
                         <Setter Property="Icon" Value="{StaticResource MenuIconImage}"/>
                         
                         <Setter Property="Header" Value="{Binding DisplayName, Mode=OneTime}"/>
