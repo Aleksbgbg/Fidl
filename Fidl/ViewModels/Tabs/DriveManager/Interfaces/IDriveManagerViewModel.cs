@@ -4,5 +4,6 @@
 
     internal interface IDriveManagerViewModel : ITabViewModel
     {
+        IDriveConductorViewModel DriveConductorViewModel { get; }
     }
 }
