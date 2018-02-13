@@ -4,7 +4,6 @@
 	<BitmapImage x:Key="Delete" UriSource="/Images/Delete.png"/>
 	<BitmapImage x:Key="Erase" UriSource="/Images/Erase.png"/>
 	<BitmapImage x:Key="HardDrive" UriSource="/Images/Hard Drive.png"/>
-	<BitmapImage x:Key="Icon" UriSource="/Images/Icon.ico"/>
 	<BitmapImage x:Key="Logo" UriSource="/Images/Logo.png"/>
 	<BitmapImage x:Key="Replace" UriSource="/Images/Replace.png"/>
 	<BitmapImage x:Key="Tick" UriSource="/Images/Tick.png"/>
