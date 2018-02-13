@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\Tabs\DriveManager\DigitalStorageConverter.cs" />
     <Compile Include="Converters\Tabs\DriveManager\DriveImageConverter.cs" />
     <Compile Include="Converters\Tabs\DriveManager\DriveLetterConverter.cs" />
