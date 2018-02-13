@@ -3,13 +3,14 @@
     using System.Windows.Input;
 
     using Fidl.Helpers;
+    using Fidl.Utilities.Interfaces;
     using Fidl.ViewModels.Interfaces;
 
     internal sealed class ShellViewModel : ViewModelBase, IShellViewModel
     {
-        public ShellViewModel(IMainViewModel mainViewModel, ITabConductorViewModel tabConductorViewModel)
+        public ShellViewModel(IMainViewModel mainViewModel, ITabConductorViewModel tabConductorViewModel, IApplicationInfo applicationInfo)
         {
-            DisplayName = "Fidl";
+            DisplayName = applicationInfo.LaunchedAsAdministrator ? "Fidl" : "Fidl (Administrator)";
 
             MainViewModel = mainViewModel;
 
