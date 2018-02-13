@@ -4,5 +4,6 @@
 
     internal interface ITabConductorViewModel : IViewModelBase, IConductor
     {
+        void SwitchTab();
     }
 }

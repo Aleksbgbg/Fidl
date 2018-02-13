@@ -2,5 +2,6 @@
 {
     internal interface IMainViewModel : IViewModelBase
     {
+        ITabConductorViewModel TabConductorViewModel { get; }
     }
 }

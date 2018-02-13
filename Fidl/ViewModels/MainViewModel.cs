@@ -3,7 +3,6 @@
     using System.Windows;
 
     using Fidl.ViewModels.Interfaces;
-    using Fidl.ViewModels.Tabs.Interfaces;
 
     internal class MainViewModel : ViewModelBase, IMainViewModel
     {

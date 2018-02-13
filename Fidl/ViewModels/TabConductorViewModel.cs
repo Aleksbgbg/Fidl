@@ -17,10 +17,12 @@
             Items.Add(startViewModel);
             Items.Add(driveManagerViewModel);
 
-            foreach (ITabViewModel tab in Items)
-            {
-                tab.Navigated += (sender, e) => ChangeActiveItem(tab, false);
-            }
+            Items.Apply(tab => tab.Navigated += (sender, e) => ChangeActiveItem(tab, false));
+        }
+
+        public void SwitchTab()
+        {
+            ChangeActiveItem(Items[(Items.IndexOf(ActiveItem) + 1) % Items.Count], false);
         }
     }
 }
