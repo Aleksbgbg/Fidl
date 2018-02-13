@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Fidl.Views.Tabs.DriveManager.DriveConductorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
+             xmlns:DriveManager="clr-namespace:Fidl.ViewModels.Tabs.DriveManager"
+             xmlns:Helpers="clr-namespace:Fidl.Helpers"
+             xmlns:Converters="clr-namespace:Fidl.Converters.Tabs.DriveManager"
+             mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance DriveManager:DriveConductorViewModel}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="400"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition MinWidth="500" Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Bottom">
+                <Button Content="Refresh Drives"
+                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Replace}"
+                        Caliburn:Message.Attach="RefreshDrives"
+                        Margin="0, 5"/>
+                
+                <Button Content="Open Disk Management"
+                        Helpers:ImageButtonHelper.AttachImage="{StaticResource HardDrive}"
+                        Helpers:RunCommandHelper.AttachRunCommand="diskmgmt.msc"/>
+            </StackPanel>
+
+            <ListBox x:Name="Items">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image DockPanel.Dock="Left" Source="{Binding Drive.Path, Mode=OneWay,
+                                Converter={x:Static Converters:DriveImageConverter.Instance}}" Margin="0, 0, 5, 0"/>
+
+                            <TextBlock DockPanel.Dock="Top" Margin="0, 2">
+                                [<Run Text="{Binding Drive.Path, Mode=OneWay,
+                                    Converter={x:Static Converters:DriveLetterConverter.Instance}}"/>]
+                                <Run Text="{Binding Drive.Name, Mode=OneWay}"/>
+                            </TextBlock>
+
+                            <TextBlock DockPanel.Dock="Bottom" Foreground="Gray" Margin="0, 2">
+                                <Run Text="{Binding Drive.FreeSpace, Mode=OneWay,
+                                    Converter={x:Static Converters:DigitalStorageConverter.Instance}}"/>
+                                free of
+                                <Run Text="{Binding Drive.TotalSize, Mode=OneWay,
+                                    Converter={x:Static Converters:DigitalStorageConverter.Instance}}"/>
+                            </TextBlock>
+
+                            <ProgressBar Value="{Binding Drive.UsedSpacePercentage, Mode=OneWay}"
+                                         Height="10"
+                                         Foreground="{Binding Drive.UsedSpacePercentage, Mode=OneWay,
+                                Converter={x:Static Converters:UsedSpaceColourConverter.Instance}}"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </DockPanel>
+
+        <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
+
+        <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ActiveItem}"/>
+    </Grid>
+</UserControl>
