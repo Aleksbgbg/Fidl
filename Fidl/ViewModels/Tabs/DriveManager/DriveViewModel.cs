@@ -57,11 +57,14 @@
             {
                 Drive.UpdateVolumeLabel(newVolumeLabel);
             }
-            catch (IOException e) when (e.HResult == -2_147_024_742) // Volume Label too long
+            catch (IOException e) when (e.HResult == -2_147_024_742) // Volume Label errors
             {
-                // This clause also executes identically with other file system errors, e.g. invalid chracters in name
-                // Consider making this more robust
-                _dialogService.ShowDialog("Volume Label Too Long", e.Message);
+                // Originally intended to provide a Volume Label Too Long error, however it was later discovered that the same HResult
+                // and exception messages are provided with any volume label naming errors, so a general 'Invalid Volume Label'
+                // message is provided instead.
+                _dialogService.ShowDialog("Invalid Volume Label",
+                                          "The provided volume label is not appropriate to the target file system.\n\nAn error " +
+                                         $"message is provided with this error (however may not be accurate):\n\n'{e.Message}'");
                 return;
             }
 
