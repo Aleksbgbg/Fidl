@@ -113,7 +113,6 @@
                     <Run Text="{Binding Drive.UsedSpacePercentage, Mode=OneWay, StringFormat={}{0:F2},
                         Converter={x:Static Converters:FreeSpacePercentageConverter.Instance}}"/>%
                 </TextBlock>
-                <TextBlock Grid.Column="6" Grid.Row="3" Text="100%" HorizontalAlignment="Right" Margin="5, 2"/>
 
                 <!-- Separator -->
                 <Separator Grid.ColumnSpan="7" Grid.Row="2" Margin="0, 5"/>
