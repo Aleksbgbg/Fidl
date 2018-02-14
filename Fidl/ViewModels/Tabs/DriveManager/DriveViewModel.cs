@@ -8,9 +8,6 @@
     using Fidl.Utilities.Interfaces;
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
 
-    using IniParser;
-    using IniParser.Model;
-
     using Microsoft.Win32;
 
     internal class DriveViewModel : ViewModelBase, IDriveViewModel
@@ -19,12 +16,15 @@
 
         private readonly IDialogService _dialogService;
 
+        private readonly IDriveIconService _driveIconService;
+
         private FileSystemNamingConvention _fileSystemNamingConvention;
 
-        public DriveViewModel(IApplicationInfo applicationInfo, IDialogService dialogService)
+        public DriveViewModel(IApplicationInfo applicationInfo, IDialogService dialogService, IDriveIconService driveIconService)
         {
             _applicationInfo = applicationInfo;
             _dialogService = dialogService;
+            _driveIconService = driveIconService;
         }
 
         public Drive Drive { get; private set; }
@@ -68,8 +68,6 @@
             Drive.Update();
         }
 
-        // TODO: Fix UnauthorisedAccessException errors in SelectNewIcon / RestoreDefaultIcon
-
         public void SelectNewIcon()
         {
             OpenFileDialog iconDialog = new OpenFileDialog
@@ -83,94 +81,14 @@
                 return;
             }
 
-            string driveIconDirectory = Path.Combine(Drive.Path, "Drive Icon");
-
-            Directory.CreateDirectory(driveIconDirectory);
-
-            string driveIconFile = Path.Combine(driveIconDirectory, "Drive Icon.ico");
-
-            File.Delete(driveIconFile);
-            File.Copy(iconDialog.FileName, driveIconFile, true);
-
-            string autorunPath = Path.Combine(Drive.Path, "autorun.inf");
-
-            if (!File.Exists(autorunPath))
-            {
-                File.WriteAllText(autorunPath, string.Empty);
-            }
-
-            // Consider expanding this functionality into Ini service
-            {
-                const string autorunString = "AUTORUN";
-                const string iconString = "ICON";
-
-                FileIniDataParser iniParser = new FileIniDataParser();
-                IniData iniData = iniParser.ReadFile(autorunPath);
-
-                if (!iniData.Sections.ContainsSection(autorunString))
-                {
-                    iniData.Sections.AddSection(autorunString);
-                }
-
-                KeyDataCollection autorunSection = iniData.Sections[autorunString];
-
-                if (!autorunSection.ContainsKey(iconString))
-                {
-                    autorunSection.AddKey(iconString);
-                }
-
-                autorunSection.GetKeyData(iconString).Value = @"Drive Icon\Drive Icon.ico";
-
-                iniParser.WriteFile(autorunPath, iniData);
-            }
-
-            foreach (string fileSystemEntry in new string[] { driveIconDirectory, driveIconFile, autorunPath })
-            {
-                File.SetAttributes(fileSystemEntry, FileAttributes.Hidden);
-            }
+            _driveIconService.SetIcon(Drive.Path, iconDialog.FileName);
 
             Drive.Update();
         }
 
         public void RestoreDefaultIcon()
         {
-            string driveIconDirectory = Path.Combine(Drive.Path, "Drive Icon");
-
-            if (Directory.Exists(driveIconDirectory))
-            {
-                Directory.Delete(driveIconDirectory, true);
-            }
-
-            // Consider expanding this functionality into Ini service
-            const string autorunString = "AUTORUN";
-            const string iconString = "ICON";
-
-            string autorunPath = Path.Combine(Drive.Path, "autorun.inf");
-
-            FileIniDataParser iniParser = new FileIniDataParser();
-            IniData iniData = iniParser.ReadFile(autorunPath);
-
-            if (iniData.Sections.ContainsSection(autorunString))
-            {
-                KeyDataCollection autorunSection = iniData.Sections[autorunString];
-
-                if (autorunSection.ContainsKey(iconString))
-                {
-                    iniData.Sections[autorunString].RemoveKey(iconString);
-                }
-
-                if (iniData.Sections[autorunString].Count == 0)
-                {
-                    iniData.Sections.RemoveSection(autorunString);
-                }
-            }
-
-            iniParser.WriteFile(autorunPath, iniData);
-
-            if (File.ReadAllText(autorunPath) == string.Empty)
-            {
-                File.Delete(autorunPath);
-            }
+            _driveIconService.RemoveIcon(Drive.Path);
 
             Drive.Update();
         }

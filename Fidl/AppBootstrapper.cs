@@ -38,6 +38,8 @@
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();
             _container.Singleton<IDialogService, DialogService>();
+            _container.Singleton<IIniService, IniService>();
+            _container.Singleton<IDriveIconService, DriveIconService>();
 
             // Register Factories
             _container.Singleton<IDriveFactory, DriveFactory>();

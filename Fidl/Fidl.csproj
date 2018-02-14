@@ -95,7 +95,11 @@
     <Compile Include="Helpers\RunCommandHelper.cs" />
     <Compile Include="Models\DriveManager\Drive.cs" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="Services\DriveIconService.cs" />
+    <Compile Include="Services\IniService.cs" />
     <Compile Include="Services\Interfaces\IDialogService.cs" />
+    <Compile Include="Services\Interfaces\IDriveIconService.cs" />
+    <Compile Include="Services\Interfaces\IIniService.cs" />
     <Compile Include="Utilities\ApplicationInfo.cs" />
     <Compile Include="Utilities\Interfaces\IApplicationInfo.cs" />
     <Compile Include="ViewModels\DialogViewModel.cs" />
