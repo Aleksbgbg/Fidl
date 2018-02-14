@@ -1,7 +1,5 @@
 ﻿namespace Fidl.ViewModels.Tabs.DriveManager
 {
-    using System;
-    using System.Collections.Specialized;
     using System.ComponentModel;
     using System.IO;
     using System.Linq;

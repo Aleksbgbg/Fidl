@@ -2,6 +2,7 @@
 {
     using System.IO;
 
+    using Fidl.Helpers.DriveManager;
     using Fidl.Models.Tabs.DriveManager;
     using Fidl.Services.Interfaces;
     using Fidl.Utilities.Interfaces;
@@ -18,6 +19,8 @@
 
         private readonly IDialogService _dialogService;
 
+        private FileSystemNamingConvention _fileSystemNamingConvention;
+
         public DriveViewModel(IApplicationInfo applicationInfo, IDialogService dialogService)
         {
             _applicationInfo = applicationInfo;
@@ -30,6 +33,8 @@
         {
             Drive = drive;
             DisplayName = drive.Name;
+
+            _fileSystemNamingConvention = new FileSystemNamingConvention(drive.FileSystemType);
         }
 
         //protected override void OnActivate()
@@ -42,7 +47,8 @@
         public bool CanUpdateVolumeLabel(string newVolumeLabel)
         {
             return _applicationInfo.LaunchedAsAdministrator &&
-                   newVolumeLabel != Drive.Name;
+                   newVolumeLabel != Drive.Name &&
+                   _fileSystemNamingConvention.IsValidName(newVolumeLabel);
         }
 
         public void UpdateVolumeLabel(string newVolumeLabel)

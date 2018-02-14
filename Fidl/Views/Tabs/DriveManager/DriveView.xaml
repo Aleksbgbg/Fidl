@@ -20,7 +20,7 @@
                             Helpers:ImageButtonHelper.AttachImage="{StaticResource Tick}" Margin="5, 0"/>
 
                 <TextBox x:Name="NewVolumeLabel" Text="{Binding Drive.Name, Mode=OneWay}"
-                         FontSize="14" VerticalContentAlignment="Center" MaxLength="32"
+                         FontSize="14" VerticalContentAlignment="Center"
                          HorizontalContentAlignment="Center"
                          Style="{StaticResource TextBox.TextBlockAppearance}"
                          Margin="5, 0"/>
