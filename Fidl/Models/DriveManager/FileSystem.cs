@@ -1,4 +1,4 @@
-﻿namespace Fidl.Helpers.DriveManager
+﻿namespace Fidl.Models.DriveManager
 {
     internal enum FileSystem
     {

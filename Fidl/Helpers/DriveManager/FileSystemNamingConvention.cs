@@ -3,6 +3,8 @@
     using System;
     using System.Linq;
 
+    using Fidl.Models.DriveManager;
+
     internal class FileSystemNamingConvention
     {
         private readonly Predicate<string> _isValidName;

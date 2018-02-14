@@ -3,7 +3,7 @@
     using System.IO;
 
     using Fidl.Helpers.DriveManager;
-    using Fidl.Models.Tabs.DriveManager;
+    using Fidl.Models.DriveManager;
     using Fidl.Services.Interfaces;
     using Fidl.Utilities.Interfaces;
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;

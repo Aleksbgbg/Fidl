@@ -8,7 +8,7 @@
     using Caliburn.Micro;
 
     using Fidl.Factories.Interfaces;
-    using Fidl.Models.Tabs.DriveManager;
+    using Fidl.Models.DriveManager;
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
 
     internal class DriveConductorViewModel : Conductor<IDriveViewModel>.Collection.OneActive, IDriveConductorViewModel

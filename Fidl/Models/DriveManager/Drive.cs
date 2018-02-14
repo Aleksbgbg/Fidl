@@ -1,11 +1,11 @@
-﻿namespace Fidl.Models.Tabs.DriveManager
+﻿namespace Fidl.Models.DriveManager
 {
     using System.Diagnostics;
     using System.IO;
 
     using Caliburn.Micro;
 
-    using FileSystemType = Fidl.Helpers.DriveManager.FileSystem;
+    using FileSystemType = Fidl.Models.DriveManager.FileSystem;
 
     internal class Drive : PropertyChangedBase
     {

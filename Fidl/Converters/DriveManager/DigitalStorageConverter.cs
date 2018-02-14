@@ -1,4 +1,4 @@
-﻿namespace Fidl.Converters.Tabs.DriveManager
+﻿namespace Fidl.Converters.DriveManager
 {
     using System;
     using System.Globalization;

@@ -1,6 +1,6 @@
 ﻿namespace Fidl.ViewModels.Tabs.DriveManager.Interfaces
 {
-    using Fidl.Models.Tabs.DriveManager;
+    using Fidl.Models.DriveManager;
     using Fidl.ViewModels.Interfaces;
 
     internal interface IDriveViewModel : IViewModelBase
