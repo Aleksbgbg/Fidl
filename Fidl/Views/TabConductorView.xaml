@@ -23,7 +23,7 @@
         <TabControl.ContentTemplate>
             <DataTemplate>
                 <DockPanel>
-                    <DockPanel DockPanel.Dock="Top" Background="LightGreen">
+                    <DockPanel DockPanel.Dock="Top" Background="{StaticResource TurquoiseLight}">
                         <Image Source="{Binding IconName, Mode=OneTime,
                             Converter={x:Static Converters:ResourceConverter.Instance}}" Height="45"/>
 
@@ -49,7 +49,7 @@
                             
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
-                                    <Setter TargetName="Panel" Property="Background" Value="LightGreen"/>
+                                    <Setter TargetName="Panel" Property="Background" Value="{StaticResource TurquoiseLight}"/>
                                 </Trigger>
                                 
                                 <Trigger Property="IsSelected" Value="False">
