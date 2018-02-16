@@ -30,7 +30,7 @@
                        Visibility="{Binding ApplicationInfo.LaunchedAsAdministrator, Mode=OneTime,
                 Converter={x:Static Converters:InvertedBooleanToVisibilityConverter.Instance}}"
                        Margin="5, 0">
-                You have not launched Fidl as administrator. Some features may be disabled or unfunctional.
+                You have not launched Fidl as administrator. Features may be nonfunctional.
             </TextBlock>
         </StackPanel>
     </DockPanel>
