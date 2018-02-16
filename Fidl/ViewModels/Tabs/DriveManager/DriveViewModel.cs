@@ -30,6 +30,20 @@
             _driveIconService = driveIconService;
         }
 
+        private string _driveRenameDisabledMessage;
+        public string DriveRenameDisabledMessage
+        {
+            get => _driveRenameDisabledMessage;
+
+            set
+            {
+                if (_driveRenameDisabledMessage == value) return;
+
+                _driveRenameDisabledMessage = value;
+                NotifyOfPropertyChange(() => DriveRenameDisabledMessage);
+            }
+        }
+
         public Drive Drive { get; private set; }
 
         public void Initialise(Drive drive)
@@ -40,6 +54,8 @@
             DisplayName = drive.Name;
 
             _fileSystemNamingConvention = new FileSystemNamingConvention(drive.FileSystemType);
+
+            CanUpdateVolumeLabel(Drive.Name);
         }
 
         protected override void OnActivate()
@@ -53,9 +69,25 @@
 
         public bool CanUpdateVolumeLabel(string newVolumeLabel)
         {
-            return _applicationInfo.LaunchedAsAdministrator &&
-                   newVolumeLabel != Drive.Name &&
-                   _fileSystemNamingConvention.IsValidName(newVolumeLabel);
+            if (!_applicationInfo.LaunchedAsAdministrator)
+            {
+                DriveRenameDisabledMessage = "Fidl does not have administrator privileges.";
+                return false;
+            }
+
+            if (newVolumeLabel == Drive.Name)
+            {
+                DriveRenameDisabledMessage = "Volume label is already set to the provided value.";
+                return false;
+            }
+
+            if (!_fileSystemNamingConvention.IsValidName(newVolumeLabel))
+            {
+                DriveRenameDisabledMessage = "Invalid volume label for the target file system.";
+                return false;
+            }
+
+            return true;
         }
 
         public void UpdateVolumeLabel(string newVolumeLabel)

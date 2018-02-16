@@ -16,8 +16,9 @@
                         Converter={x:Static Converters:DriveImageConverter.Instance}}" Height="20" Margin="5, 0"/>
 
                 <Button DockPanel.Dock="Right" x:Name="UpdateVolumeLabel"
-                            Content="Save"
-                            Helpers:ImageButtonHelper.AttachImage="{StaticResource Tick}" Margin="5, 0"/>
+                        Content="Apply" ToolTip="{Binding DriveRenameDisabledMessage}"
+                        ToolTipService.ShowOnDisabled="True"
+                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Tick}" Margin="5, 0"/>
 
                 <TextBox x:Name="NewVolumeLabel" Text="{Binding Drive.Name, Mode=OneWay}"
                          FontSize="14" VerticalContentAlignment="Center"
