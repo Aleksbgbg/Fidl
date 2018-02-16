@@ -14,6 +14,8 @@
                 IDriveManagerViewModel driveManagerViewModel
                 )
         {
+            ScreenExtensions.TryActivate(this);
+
             Items.Add(startViewModel);
             Items.Add(driveManagerViewModel);
 

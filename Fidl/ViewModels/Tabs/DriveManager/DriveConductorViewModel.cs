@@ -17,6 +17,8 @@
 
         public DriveConductorViewModel(IDriveFactory driveFactory)
         {
+            ScreenExtensions.TryActivate(this);
+
             _driveFactory = driveFactory;
 
             Items.AddRange(DriveInfo.GetDrives()
