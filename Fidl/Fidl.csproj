@@ -110,6 +110,8 @@
     <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveConductorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveManagerViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\Interfaces\IDriveViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IRegistryEditorViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
     <Compile Include="Views\DialogView.xaml.cs">
@@ -126,6 +128,9 @@
     </Compile>
     <Compile Include="Views\Tabs\DriveManager\DriveView.xaml.cs">
       <DependentUpon>DriveView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\RegistryEditor\RegistryEditorView.xaml.cs">
+      <DependentUpon>RegistryEditorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
@@ -207,6 +212,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Tabs\RegistryEditor\RegistryEditorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Tabs\Start\StartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +276,9 @@
   <ItemGroup>
     <Resource Include="Images\Camera.png" />
     <Resource Include="Images\Erase.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Regedit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

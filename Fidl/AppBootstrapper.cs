@@ -16,6 +16,8 @@
     using Fidl.ViewModels.Interfaces;
     using Fidl.ViewModels.Tabs.DriveManager;
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
+    using Fidl.ViewModels.Tabs.RegistryEditor;
+    using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
     using Fidl.ViewModels.Tabs.Start;
     using Fidl.ViewModels.Tabs.Start.Interfaces;
 
@@ -62,6 +64,9 @@
             _container.Singleton<IDriveManagerViewModel, DriveManagerViewModel>();
             _container.Singleton<IDriveConductorViewModel, DriveConductorViewModel>();
             _container.PerRequest<IDriveViewModel, DriveViewModel>();
+
+            // Registry Editor tab
+            _container.Singleton<IRegistryEditorViewModel, RegistryEditorViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
