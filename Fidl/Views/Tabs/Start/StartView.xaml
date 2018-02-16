@@ -19,9 +19,7 @@
             <Separator Margin="5"/>
 
             <TextBlock TextWrapping="Wrap" FontSize="16" Margin="5, 0">
-                Welcome to Fidl release '<Run Text="{Binding ApplicationInfo.Version, Mode=OneTime}"/>'.
-                
-                Fidl release versions will rebuild Fidl with even more interesting Windows management features.
+                Welcome to Fidl: a simple tab-based app which allows you to control various Windows functions with ease.
             </TextBlock>
 
             <Separator Margin="5"/>
@@ -30,7 +28,7 @@
                        Visibility="{Binding ApplicationInfo.LaunchedAsAdministrator, Mode=OneTime,
                 Converter={x:Static Converters:InvertedBooleanToVisibilityConverter.Instance}}"
                        Margin="5, 0">
-                You have not launched Fidl as administrator. Features may be nonfunctional.
+                You have not launched Fidl as administrator. Some features may be disabled or non-functional.
             </TextBlock>
         </StackPanel>
     </DockPanel>
