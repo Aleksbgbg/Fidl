@@ -35,7 +35,7 @@
         {
             get => _driveRenameDisabledMessage;
 
-            set
+            private set
             {
                 if (_driveRenameDisabledMessage == value) return;
 
