@@ -1,5 +1,6 @@
 ﻿namespace Fidl.ViewModels.Tabs.DriveManager
 {
+    using System;
     using System.IO;
 
     using Fidl.Helpers.DriveManager;
@@ -20,6 +21,8 @@
 
         private FileSystemNamingConvention _fileSystemNamingConvention;
 
+        private DateTime _lastDriveUpdateTime;
+
         public DriveViewModel(IApplicationInfo applicationInfo, IDialogService dialogService, IDriveIconService driveIconService)
         {
             _applicationInfo = applicationInfo;
@@ -31,18 +34,22 @@
 
         public void Initialise(Drive drive)
         {
+            drive.Updated += (sender, e) => _lastDriveUpdateTime = DateTime.Now;
+
             Drive = drive;
             DisplayName = drive.Name;
 
             _fileSystemNamingConvention = new FileSystemNamingConvention(drive.FileSystemType);
         }
 
-        //protected override void OnActivate()
-        //{
-        //    if (!Directory.Exists(Drive.Path)) return;
-        //
-        //    Drive.Update();
-        //}
+        protected override void OnActivate()
+        {
+            if ((DateTime.Now - _lastDriveUpdateTime).TotalMinutes <= 2) return;
+
+            if (!Directory.Exists(Drive.Path)) return;
+
+            Drive.Update();
+        }
 
         public bool CanUpdateVolumeLabel(string newVolumeLabel)
         {

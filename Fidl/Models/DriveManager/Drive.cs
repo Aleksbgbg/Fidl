@@ -1,5 +1,6 @@
 ﻿namespace Fidl.Models.DriveManager
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
 
@@ -16,6 +17,8 @@
             Path = driveInfo.Name;
             Update(driveInfo);
         }
+
+        internal event EventHandler Updated;
 
         public string Path { get; }
 
@@ -168,6 +171,8 @@
             UsedSpace = TotalSize - FreeSpace;
 
             UsedSpacePercentage = (double)UsedSpace / TotalSize * 100;
+
+            Updated?.Invoke(this, EventArgs.Empty);
         }
 
         internal void UpdateVolumeLabel(string newVolumeLabel)
