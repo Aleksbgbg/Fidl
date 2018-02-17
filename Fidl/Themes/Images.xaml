@@ -1,8 +1,11 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<BitmapImage x:Key="Camera" UriSource="/Images/Camera.png"/>
+	<BitmapImage x:Key="Computer" UriSource="/Images/Computer.png"/>
 	<BitmapImage x:Key="Delete" UriSource="/Images/Delete.png"/>
 	<BitmapImage x:Key="Erase" UriSource="/Images/Erase.png"/>
+	<BitmapImage x:Key="Folder" UriSource="/Images/Folder.png"/>
+	<BitmapImage x:Key="FolderOpen" UriSource="/Images/Folder Open.png"/>
 	<BitmapImage x:Key="HardDrive" UriSource="/Images/Hard Drive.png"/>
 	<BitmapImage x:Key="Logo" UriSource="/Images/Logo.png"/>
 	<BitmapImage x:Key="Regedit" UriSource="/Images/Regedit.png"/>
