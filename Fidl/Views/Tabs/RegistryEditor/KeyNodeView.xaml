@@ -2,10 +2,64 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Caliburn="http://www.caliburnproject.org"
                     xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor">
+    <MenuItem x:Key="MenuItem.ToggleExpansion" FontWeight="DemiBold" x:Shared="False" Caliburn:Message.Attach="ToggleExpansion">
+        <MenuItem.Style>
+            <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                        <Setter Property="Header" Value="Collapse"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding IsExpanded}" Value="False">
+                        <Setter Property="Header" Value="Expand"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </MenuItem.Style>
+    </MenuItem>
+
     <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys}">
         <HierarchicalDataTemplate.ItemTemplate>
             <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys}">
+                <HierarchicalDataTemplate.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}"
+                                              ItemsSource="{Binding Keys}">
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel.ContextMenu>
+                                <ContextMenu>
+                                    <StaticResource ResourceKey="MenuItem.ToggleExpansion"/>
+                                </ContextMenu>
+                            </StackPanel.ContextMenu>
+
+                            <Image Height="20">
+                                <Image.Style>
+                                    <Style TargetType="Image" BasedOn="{StaticResource {x:Type Image}}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                                                <Setter Property="Source" Value="{StaticResource FolderOpen}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsExpanded}" Value="False">
+                                                <Setter Property="Source" Value="{StaticResource Folder}"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{Binding Key.IsAccessible}" Value="False">
+                                                <Setter Property="Opacity" Value="0.5"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                            <TextBlock Text="{Binding DisplayName}" Margin="5, 0"/>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </HierarchicalDataTemplate.ItemTemplate>
+
                 <StackPanel Orientation="Horizontal">
+                    <StackPanel.ContextMenu>
+                        <ContextMenu>
+                            <StaticResource ResourceKey="MenuItem.ToggleExpansion"/>
+                        </ContextMenu>
+                    </StackPanel.ContextMenu>
+
                     <Image Height="20">
                         <Image.Style>
                             <Style TargetType="Image" BasedOn="{StaticResource {x:Type Image}}">
@@ -32,20 +86,7 @@
         <StackPanel Orientation="Horizontal">
             <StackPanel.ContextMenu>
                 <ContextMenu>
-                    <MenuItem FontWeight="DemiBold" Caliburn:Message.Attach="ToggleExpansion">
-                        <MenuItem.Style>
-                            <Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded}" Value="True">
-                                        <Setter Property="Header" Value="Collapse"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsExpanded}" Value="False">
-                                        <Setter Property="Header" Value="Expand"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </MenuItem.Style>
-                    </MenuItem>
+                    <StaticResource ResourceKey="MenuItem.ToggleExpansion"/>
                 </ContextMenu>
             </StackPanel.ContextMenu>
 
