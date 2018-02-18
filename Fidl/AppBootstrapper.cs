@@ -39,12 +39,16 @@
         {
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();
+            _container.Singleton<IEventAggregator, EventAggregator>();
+
             _container.Singleton<IDialogService, DialogService>();
-            _container.Singleton<IIniService, IniService>();
+
             _container.Singleton<IDriveIconService, DriveIconService>();
+            _container.Singleton<IIniService, IniService>();
 
             // Register Factories
             _container.Singleton<IDriveFactory, DriveFactory>();
+            _container.Singleton<IRegistryFactory, RegistryFactory>();
 
             // Register Utilities
             _container.Singleton<IApplicationInfo, ApplicationInfo>();
@@ -67,6 +71,8 @@
 
             // Registry Editor tab
             _container.Singleton<IRegistryEditorViewModel, RegistryEditorViewModel>();
+            _container.Singleton<IRegistryTreeViewModel, RegistryTreeViewModel>();
+            _container.PerRequest<IKeyNodeViewModel, KeyNodeViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
