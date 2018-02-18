@@ -103,12 +103,7 @@
                 return this;
             }
 
-            string[] GetTokens(string keyPath)
-            {
-                return keyPath.Split('\\');
-            }
-
-            string nextName = GetTokens(path).Skip(GetTokens(Key.Path).Length).FirstOrDefault();
+            string nextName = path.Split('\\').Skip(Key.Path.Count(character => character == '\\')).FirstOrDefault();
 
             IKeyNodeViewModel nextKey = Keys.SingleOrDefault(keyNodeViewModel => keyNodeViewModel.Key.Name.Equals(nextName, StringComparison.OrdinalIgnoreCase));
 
@@ -120,6 +115,11 @@
             nextKey.IsExpanded = true;
 
             return nextKey.Find(path);
+        }
+
+        public bool CanToggleExpansion()
+        {
+            return Key.HasItems;
         }
 
         public void ToggleExpansion()
