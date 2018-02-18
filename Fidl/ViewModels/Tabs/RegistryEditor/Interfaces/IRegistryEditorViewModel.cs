@@ -4,5 +4,6 @@
 
     internal interface IRegistryEditorViewModel : ITabViewModel
     {
+        IRegistryTreeViewModel RegistryTreeViewModel { get; }
     }
 }

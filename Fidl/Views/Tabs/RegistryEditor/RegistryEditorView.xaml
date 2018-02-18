@@ -3,7 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:RegistryEditorViewModel}">
+    <DockPanel>
+        <TextBox DockPanel.Dock="Top"
+                 Text="{Binding RegistryTreeViewModel.SelectedPath,
+            UpdateSourceTrigger=PropertyChanged}"
+                 Caliburn:Message.Attach="[Event KeyDown] = [Action KeyDown($eventArgs)]"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ContentControl Caliburn:View.Model="{Binding RegistryTreeViewModel}"/>
+        </Grid>
+    </DockPanel>
 </UserControl>
