@@ -122,6 +122,11 @@
             return nextKey.Find(path);
         }
 
+        public void ToggleExpansion()
+        {
+            IsExpanded = !IsExpanded;
+        }
+
         private void BalanceKeys()
         {
             if (Key.IsAccessible && Key.HasItems)
