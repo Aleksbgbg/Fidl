@@ -16,6 +16,14 @@
             </Style>
         </MenuItem.Style>
     </MenuItem>
+    
+    <Style x:Key="Image.TreeViewItem" TargetType="Image" BasedOn="{StaticResource Image.TreeViewFolder}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Key.IsAccessible}" Value="False">
+                <Setter Property="Opacity" Value="0.5"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys}">
         <HierarchicalDataTemplate.ItemTemplate>
@@ -30,24 +38,7 @@
                                 </ContextMenu>
                             </StackPanel.ContextMenu>
 
-                            <Image Height="20">
-                                <Image.Style>
-                                    <Style TargetType="Image" BasedOn="{StaticResource {x:Type Image}}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsExpanded}" Value="True">
-                                                <Setter Property="Source" Value="{StaticResource FolderOpen}"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsExpanded}" Value="False">
-                                                <Setter Property="Source" Value="{StaticResource Folder}"/>
-                                            </DataTrigger>
-
-                                            <DataTrigger Binding="{Binding Key.IsAccessible}" Value="False">
-                                                <Setter Property="Opacity" Value="0.5"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
+                            <Image Height="20" Style="{StaticResource Image.TreeViewItem}"/>
                             <TextBlock Text="{Binding DisplayName}" Margin="5, 0"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
@@ -60,24 +51,7 @@
                         </ContextMenu>
                     </StackPanel.ContextMenu>
 
-                    <Image Height="20">
-                        <Image.Style>
-                            <Style TargetType="Image" BasedOn="{StaticResource {x:Type Image}}">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded}" Value="True">
-                                        <Setter Property="Source" Value="{StaticResource FolderOpen}"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding IsExpanded}" Value="False">
-                                        <Setter Property="Source" Value="{StaticResource Folder}"/>
-                                    </DataTrigger>
-
-                                    <DataTrigger Binding="{Binding Key.IsAccessible}" Value="False">
-                                        <Setter Property="Opacity" Value="0.5"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
+                    <Image Height="20" Style="{StaticResource Image.TreeViewItem}"/>
                     <TextBlock Text="{Binding DisplayName}" Margin="5, 0"/>
                 </StackPanel>
             </HierarchicalDataTemplate>
