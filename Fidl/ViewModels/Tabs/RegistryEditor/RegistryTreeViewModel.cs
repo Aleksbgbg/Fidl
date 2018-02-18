@@ -27,13 +27,14 @@
                     Registry.CurrentConfig
             }.Select(registryKey => new Key(registryKey)).Select(registryFactory.MakeKey));
             computerKey.IsExpanded = true;
+            computerKey.IsSelected = true;
 
             RootKey = registryFactory.MakeKey(null);
             RootKey.Keys.Add(computerKey);
             RootKey.IsExpanded = true;
         }
 
-        private string _selectedPath = string.Empty;
+        private string _selectedPath;
         public string SelectedPath
         {
             get => _selectedPath;
