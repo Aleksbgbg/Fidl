@@ -32,6 +32,11 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
             
+            <Style TargetType="TreeView">
+                <Setter Property="VirtualizingStackPanel.IsVirtualizing" Value="True"/>
+                <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Recycling"/>
+            </Style>
+            
             <Style TargetType="ScrollViewer">
                 <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
             </Style>
