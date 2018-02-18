@@ -79,6 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBooleanToVisibilityConverter.cs" />
     <Compile Include="Converters\DriveManager\DigitalStorageConverter.cs" />
     <Compile Include="Converters\DriveManager\DriveImageConverter.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Factories\Interfaces\IDriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IRegistryFactory.cs" />
     <Compile Include="Factories\RegistryFactory.cs" />
+    <Compile Include="Helpers\Registry Editor\ContextMenuHelper.cs" />
     <Compile Include="Models\DriveManager\FileSystem.cs" />
     <Compile Include="Helpers\DriveManager\FileSystemNamingConvention.cs" />
     <Compile Include="Helpers\ImageButtonHelper.cs" />
