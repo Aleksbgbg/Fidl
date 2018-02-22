@@ -16,9 +16,15 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <ContentControl Caliburn:View.Model="{Binding RegistryTreeViewModel}"/>
+
+            <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
+            
+            <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ValueDisplayViewModel}"/>
         </Grid>
     </DockPanel>
 </UserControl>

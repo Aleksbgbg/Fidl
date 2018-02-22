@@ -6,12 +6,15 @@
 
     internal class RegistryEditorViewModel : TabViewModel, IRegistryEditorViewModel
     {
-        public RegistryEditorViewModel(IRegistryTreeViewModel registryTreeViewModel) : base("Regedit", "Browse and modify the Windows registry.")
+        public RegistryEditorViewModel(IRegistryTreeViewModel registryTreeViewModel, IValueDisplayViewModel valueDisplayViewModel) : base("Regedit", "Browse and modify the Windows registry.")
         {
             RegistryTreeViewModel = registryTreeViewModel;
+            ValueDisplayViewModel = valueDisplayViewModel;
         }
 
         public IRegistryTreeViewModel RegistryTreeViewModel { get; }
+
+        public IValueDisplayViewModel ValueDisplayViewModel { get; }
 
         public void KeyDown(KeyEventArgs e)
         {

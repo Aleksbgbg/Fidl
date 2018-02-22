@@ -72,6 +72,7 @@
             // Registry Editor tab
             _container.Singleton<IRegistryEditorViewModel, RegistryEditorViewModel>();
             _container.Singleton<IRegistryTreeViewModel, RegistryTreeViewModel>();
+            _container.Singleton<IValueDisplayViewModel, ValueDisplayViewModel>();
             _container.PerRequest<IKeyNodeViewModel, KeyNodeViewModel>();
         }
 

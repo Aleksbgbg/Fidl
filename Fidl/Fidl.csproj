@@ -98,6 +98,7 @@
     <Compile Include="Helpers\RunCommandHelper.cs" />
     <Compile Include="Models\DriveManager\Drive.cs" />
     <Compile Include="Models\RegistryEditor\Key.cs" />
+    <Compile Include="Models\RegistryEditor\Value.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\DriveIconService.cs" />
     <Compile Include="Services\IniService.cs" />
@@ -117,9 +118,11 @@
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IKeyNodeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IRegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IRegistryTreeViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IValueDisplayViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\KeyNodeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryTreeViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueDisplayViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
     <Compile Include="Views\DialogView.xaml.cs">
@@ -142,6 +145,9 @@
     </Compile>
     <Compile Include="Views\Tabs\RegistryEditor\RegistryTreeView.xaml.cs">
       <DependentUpon>RegistryTreeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\RegistryEditor\ValueDisplayView.xaml.cs">
+      <DependentUpon>ValueDisplayView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
@@ -232,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Tabs\RegistryEditor\RegistryTreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\RegistryEditor\ValueDisplayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
