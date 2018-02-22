@@ -19,6 +19,7 @@
         public IValueViewModel MakeValue(Value value)
         {
             IValueViewModel valueViewModel = IoC.Get<IValueViewModel>();
+            valueViewModel.Initialise(value);
 
             return valueViewModel;
         }
