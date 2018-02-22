@@ -6,4 +6,5 @@
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:ValueDisplayViewModel}">
+    <ListView ItemsSource="{Binding Values}"/>
 </UserControl>

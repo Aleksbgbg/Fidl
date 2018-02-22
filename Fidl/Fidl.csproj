@@ -119,10 +119,12 @@
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IRegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IRegistryTreeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IValueDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\Interfaces\IValueViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\KeyNodeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryTreeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
     <Compile Include="Views\DialogView.xaml.cs">

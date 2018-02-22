@@ -11,15 +11,13 @@
 
     internal class Key
     {
-        private readonly RegistryKey _registryKey;
-
         internal Key() : this(string.Empty, true, true)
         {
         }
 
         internal Key(RegistryKey registryKey) : this(registryKey.Name, true, registryKey.SubKeyCount > 0)
         {
-            _registryKey = registryKey;
+            RegistryKey = registryKey;
         }
 
         private Key(string name) : this(name, false, false)
@@ -45,17 +43,19 @@
 
         public bool HasItems { get; }
 
+        internal RegistryKey RegistryKey { get; }
+
         internal IEnumerable<Key> GetSubKeys()
         {
-            return _registryKey.GetSubKeyNames().Select(keyName =>
+            return RegistryKey.GetSubKeyNames().Select(keyName =>
             {
                 try
                 {
-                    return new Key(_registryKey.OpenSubKey(keyName));
+                    return new Key(RegistryKey.OpenSubKey(keyName));
                 }
                 catch (SecurityException) // Lack of permissions to open key (still display it as hidden)
                 {
-                    return new Key(IOPath.Combine(_registryKey.Name, keyName));
+                    return new Key(IOPath.Combine(RegistryKey.Name, keyName));
                 }
             });
         }

@@ -9,6 +9,7 @@
 
         public void Initialise(Value value)
         {
+            DisplayName = value.Name;
             Value = value;
         }
     }
