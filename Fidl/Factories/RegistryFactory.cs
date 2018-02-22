@@ -15,5 +15,12 @@
 
             return keyNodeViewModel;
         }
+
+        public IValueViewModel MakeValue(Value value)
+        {
+            IValueViewModel valueViewModel = IoC.Get<IValueViewModel>();
+
+            return valueViewModel;
+        }
     }
 }

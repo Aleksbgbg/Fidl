@@ -6,5 +6,7 @@
     internal interface IRegistryFactory
     {
         IKeyNodeViewModel MakeKey(Key key);
+
+        IValueViewModel MakeValue(Value value);
     }
 }

@@ -66,14 +66,18 @@
 
             // Drive Manager tab
             _container.Singleton<IDriveManagerViewModel, DriveManagerViewModel>();
+
             _container.Singleton<IDriveConductorViewModel, DriveConductorViewModel>();
             _container.PerRequest<IDriveViewModel, DriveViewModel>();
 
             // Registry Editor tab
             _container.Singleton<IRegistryEditorViewModel, RegistryEditorViewModel>();
+
             _container.Singleton<IRegistryTreeViewModel, RegistryTreeViewModel>();
             _container.Singleton<IValueDisplayViewModel, ValueDisplayViewModel>();
+
             _container.PerRequest<IKeyNodeViewModel, KeyNodeViewModel>();
+            _container.PerRequest<IValueViewModel, ValueViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
