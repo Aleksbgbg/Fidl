@@ -103,7 +103,7 @@
                 return this;
             }
 
-            string nextName = path.Split('\\').Skip(Key.Path.Count(character => character == '\\')).FirstOrDefault();
+            string nextName = path.Split('\\').Skip(Key.Path.Count(character => character == '\\') + 1).FirstOrDefault();
 
             IKeyNodeViewModel nextKey = Keys.SingleOrDefault(keyNodeViewModel => keyNodeViewModel.Key.Name.Equals(nextName, StringComparison.OrdinalIgnoreCase));
 
