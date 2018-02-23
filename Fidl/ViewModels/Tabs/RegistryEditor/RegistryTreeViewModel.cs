@@ -57,6 +57,11 @@
 
         public void NavigateTo(string path)
         {
+            if (!path.TrimStart('\\').StartsWith("Computer"))
+            {
+                path = Path.Combine("Computer", path);
+            }
+
             RootKey.Find(path).IsSelected = true;
         }
 

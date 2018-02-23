@@ -112,6 +112,11 @@
 
             string nextName = path.Split('\\').Skip(Key.Path.Count(character => character == '\\') + 1).FirstOrDefault();
 
+            if (nextName == null)
+            {
+                return this;
+            }
+
             IKeyNodeViewModel nextKey = Keys.SingleOrDefault(keyNodeViewModel => keyNodeViewModel.Key.Name.Equals(nextName, StringComparison.OrdinalIgnoreCase));
 
             if (nextKey == null)
