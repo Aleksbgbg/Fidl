@@ -4,12 +4,12 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-    using System.Runtime.InteropServices;
     using System.Windows.Data;
 
     using Caliburn.Micro;
 
     using Fidl.Factories.Interfaces;
+    using Fidl.Helpers;
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
 
@@ -74,11 +74,8 @@
                     return 1;
                 }
 
-                return StrCmpLogicalW(first.Value.Name, second.Value.Name);
+                return LogicalStringComparer.Default.Compare(first.Value.Name, second.Value.Name);
             }
-
-            [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
-            private static extern int StrCmpLogicalW(string first, string second);
         }
     }
 }
