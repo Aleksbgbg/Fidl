@@ -16,7 +16,7 @@
             }
 
             Kind = exists ? registryKey.GetValueKind(name) : RegistryValueKind.String;
-            StoredValue = registryKey.GetValue(name) ?? "(value not set)";
+            StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames) ?? "(value not set)";
         }
 
         public string Name { get; }
