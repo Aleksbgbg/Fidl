@@ -8,7 +8,7 @@
         {
             Name = string.Empty;
             Kind = RegistryValueKind.String;
-            StoredValue = "(value not set)";
+            StoredValue = null;
         }
 
         internal Value(RegistryKey registryKey, string name)
@@ -18,12 +18,12 @@
             if (registryKey == null)
             {
                 Kind = RegistryValueKind.String;
-                StoredValue = "(value not set)";
+                StoredValue = null;
                 return;
             }
 
             Kind = registryKey.GetValueKind(name);
-            StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames) ?? "(value not set)";
+            StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames);
         }
 
         public string Name { get; }
