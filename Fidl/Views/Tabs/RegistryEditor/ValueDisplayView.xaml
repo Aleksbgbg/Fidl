@@ -13,7 +13,14 @@
                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime}"/>
                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
                     Converter={x:Static Converters:RegistryValueKindToStringConverter.Instance}}"/>
-                <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value.StoredValue, Mode=OneTime}"/>
+                <GridViewColumn Header="Value">
+                    <GridViewColumn.DisplayMemberBinding>
+                        <MultiBinding Converter="{x:Static Converters:RegistryValueDisplayConverter.Instance}" Mode="OneTime">
+                            <Binding Path="Value.StoredValue" Mode="OneTime"/>
+                            <Binding Path="Value.Kind" Mode="OneTime"/>
+                        </MultiBinding>
+                    </GridViewColumn.DisplayMemberBinding>
+                </GridViewColumn>
             </GridView>
         </ListView.View>
     </ListView>
