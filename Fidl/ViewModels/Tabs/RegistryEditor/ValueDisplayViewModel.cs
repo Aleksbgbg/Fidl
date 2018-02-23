@@ -1,6 +1,11 @@
 ﻿namespace Fidl.ViewModels.Tabs.RegistryEditor
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
+    using System.Runtime.InteropServices;
+    using System.Windows.Data;
 
     using Caliburn.Micro;
 
@@ -17,6 +22,8 @@
             _registryFactory = registryFactory;
 
             eventAggregator.Subscribe(this);
+
+            ((ListCollectionView)CollectionViewSource.GetDefaultView(Values)).CustomSort = ValueComparer.Default;
         }
 
         public IObservableCollection<IValueViewModel> Values { get; } = new BindableCollection<IValueViewModel>();
@@ -38,6 +45,40 @@
 
             Values.AddRange(keyValues.Select(valueName => new Value(message.Key.RegistryKey, valueName))
                                      .Select(_registryFactory.MakeValue));
+        }
+
+        private class ValueComparer : IComparer, IComparer<IValueViewModel>
+        {
+            internal static ValueComparer Default { get; } = new ValueComparer();
+
+            public int Compare(object first, object second)
+            {
+                Debug.Assert(first is IValueViewModel, $"{nameof(first)} is {nameof(IValueViewModel)}");
+                Debug.Assert(second is IValueViewModel, $"{nameof(second)} is {nameof(IValueViewModel)}");
+
+                return Compare((IValueViewModel)first, (IValueViewModel)second);
+            }
+
+            public int Compare(IValueViewModel first, IValueViewModel second)
+            {
+                Debug.Assert(first != null, $"{nameof(first)} != null");
+                Debug.Assert(second != null, $"{nameof(second)} != null");
+
+                if (first.Value.Name == string.Empty)
+                {
+                    return -1;
+                }
+
+                if (second.Value.Name == string.Empty)
+                {
+                    return 1;
+                }
+
+                return StrCmpLogicalW(first.Value.Name, second.Value.Name);
+            }
+
+            [DllImport("shlwapi.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+            private static extern int StrCmpLogicalW(string first, string second);
         }
     }
 }
