@@ -6,5 +6,13 @@
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:ValueDisplayViewModel}">
-    <ListView ItemsSource="{Binding Values}"/>
+    <ListView ItemsSource="{Binding Values, Mode=OneTime}">
+        <ListView.View>
+            <GridView>
+                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime}"/>
+                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime}"/>
+                <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value.StoredValue, Mode=OneTime}"/>
+            </GridView>
+        </ListView.View>
+    </ListView>
 </UserControl>

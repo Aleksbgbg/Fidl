@@ -26,11 +26,18 @@
             if (!message.IsSelected) return;
 
             Values.Clear();
-            Values.AddRange(message.Key
-                                   .RegistryKey
-                                   .GetValueNames()
-                                   .Select(valueName => new Value(message.Key.RegistryKey, valueName))
-                                   .Select(_registryFactory.MakeValue));
+
+            if (message.Key.RegistryKey == null) return;
+
+            string[] keyValues = message.Key.RegistryKey.GetValueNames();
+
+            if (!keyValues.Contains(string.Empty))
+            {
+                Values.Add(_registryFactory.MakeValue(new Value(message.Key.RegistryKey, string.Empty, false)));
+            }
+
+            Values.AddRange(keyValues.Select(valueName => new Value(message.Key.RegistryKey, valueName))
+                                     .Select(_registryFactory.MakeValue));
         }
     }
 }
