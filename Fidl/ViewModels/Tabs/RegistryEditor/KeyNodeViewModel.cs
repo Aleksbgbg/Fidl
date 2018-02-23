@@ -1,12 +1,17 @@
 ﻿namespace Fidl.ViewModels.Tabs.RegistryEditor
 {
     using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.IO;
     using System.Linq;
+    using System.Windows.Data;
 
     using Caliburn.Micro;
 
     using Fidl.Factories.Interfaces;
+    using Fidl.Helpers;
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
 
@@ -20,6 +25,8 @@
         {
             _eventAggregator = eventAggregator;
             _registryFactory = registryFactory;
+
+            ((ListCollectionView)CollectionViewSource.GetDefaultView(Keys)).CustomSort = KeyNodeComparer.Default;
         }
 
         public IObservableCollection<IKeyNodeViewModel> Keys { get; } = new BindableCollection<IKeyNodeViewModel>();
@@ -138,6 +145,27 @@
         private bool IsValidKey()
         {
             return Key != null && Key.Path != "Computer";
+        }
+
+        private class KeyNodeComparer : IComparer, IComparer<IKeyNodeViewModel>
+        {
+            internal static KeyNodeComparer Default { get; } = new KeyNodeComparer();
+
+            public int Compare(object first, object second)
+            {
+                Debug.Assert(first is IKeyNodeViewModel, $"{nameof(first)} is {nameof(IKeyNodeViewModel)}");
+                Debug.Assert(second is IKeyNodeViewModel, $"{nameof(second)} is {nameof(IKeyNodeViewModel)}");
+
+                return Compare((IKeyNodeViewModel)first, (IKeyNodeViewModel)second);
+            }
+
+            public int Compare(IKeyNodeViewModel first, IKeyNodeViewModel second)
+            {
+                Debug.Assert(first != null, $"{nameof(first)} != null");
+                Debug.Assert(second != null, $"{nameof(second)} != null");
+
+                return LogicalStringComparer.Default.Compare(first.Key.Name, second.Key.Name);
+            }
         }
     }
 }
