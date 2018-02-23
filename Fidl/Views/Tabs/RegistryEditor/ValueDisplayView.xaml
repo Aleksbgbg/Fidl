@@ -10,10 +10,24 @@
     <ListView ItemsSource="{Binding Values, Mode=OneTime}">
         <ListView.View>
             <GridView>
-                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime,
-                    Converter={x:Static Converters:RegistryValueNameConverter.Instance}}"/>
+                <GridViewColumn Header="Name">
+                    <GridViewColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Value.Kind, Mode=OneTime,
+                                    Converter={x:Static Converters:RegistryValueImageConverter.Instance}}"
+                                       Height="15"/>
+                                <TextBlock Text="{Binding Value.Name, Mode=OneTime,
+                                    Converter={x:Static Converters:RegistryValueNameConverter.Instance}}"
+                                           Margin="5, 0"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                </GridViewColumn>
+                
                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
                     Converter={x:Static Converters:RegistryValueKindToStringConverter.Instance}}"/>
+                
                 <GridViewColumn Header="Value">
                     <GridViewColumn.DisplayMemberBinding>
                         <MultiBinding Converter="{x:Static Converters:RegistryValueDisplayConverter.Instance}" Mode="OneTime">

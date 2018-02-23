@@ -88,6 +88,7 @@
     <Compile Include="Converters\DriveManager\UsedSpaceColourConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueDisplayConverter.cs" />
+    <Compile Include="Converters\RegistryEditor\RegistryValueImageConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueKindToStringConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueNameConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
@@ -323,6 +324,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Computer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Registry Binary.ico" />
+    <Resource Include="Images\Registry String.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
