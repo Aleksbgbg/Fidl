@@ -4,6 +4,7 @@
     using System.Diagnostics;
     using System.Globalization;
     using System.Windows.Data;
+
     using Microsoft.Win32;
 
     [ValueConversion(typeof(RegistryValueKind), typeof(string))]
@@ -18,28 +19,28 @@
             switch ((RegistryValueKind)value)
             {
                 case RegistryValueKind.String:
-                    return "String (REG_SZ)";
+                    return "REG_SZ (String)";
 
                 case RegistryValueKind.ExpandString:
-                    return "ExpandString (REG_EXPAND_SZ)";
+                    return "REG_EXPAND_SZ (ExpandString)";
 
                 case RegistryValueKind.Binary:
-                    return "Binary (REG_BINARY)";
+                    return "REG_BINARY (Binary)";
 
                 case RegistryValueKind.DWord:
-                    return "DoubleWord (REG_DWORD)";
+                    return "REG_DWORD (DoubleWord)";
 
                 case RegistryValueKind.MultiString:
-                    return "Multi-String (REG_MULTI_SZ)";
+                    return "REG_MULTI_SZ (Multi-String)";
 
                 case RegistryValueKind.QWord:
-                    return "QuadWord (REG_QWORD)";
+                    return "REG_QWORD (QuadWord)";
 
                 case RegistryValueKind.Unknown:
-                    return "Unknown (REG_UNKNOWN)";
+                    return "REG_UNKNOWN (Unknown)";
 
                 case RegistryValueKind.None:
-                    return "None (REG_NONE)";
+                    return "REG_NONE (None)";
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(value), value, null);
