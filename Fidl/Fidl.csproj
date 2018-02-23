@@ -88,6 +88,7 @@
     <Compile Include="Converters\DriveManager\UsedSpaceColourConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueDisplayConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueKindToStringConverter.cs" />
+    <Compile Include="Converters\RegistryEditor\RegistryValueNameConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
     <Compile Include="Factories\DriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IDriveFactory.cs" />

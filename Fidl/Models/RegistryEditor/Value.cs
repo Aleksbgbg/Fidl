@@ -6,14 +6,14 @@
     {
         internal Value()
         {
-            Name = "(default)";
+            Name = string.Empty;
             Kind = RegistryValueKind.String;
             StoredValue = "(value not set)";
         }
 
         internal Value(RegistryKey registryKey, string name)
         {
-            Name = name == string.Empty ? "(default)" : name;
+            Name = name;
 
             if (registryKey == null)
             {

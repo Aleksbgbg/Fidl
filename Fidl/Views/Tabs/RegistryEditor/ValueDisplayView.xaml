@@ -10,7 +10,8 @@
     <ListView ItemsSource="{Binding Values, Mode=OneTime}">
         <ListView.View>
             <GridView>
-                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime}"/>
+                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime,
+                    Converter={x:Static Converters:RegistryValueNameConverter.Instance}}"/>
                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
                     Converter={x:Static Converters:RegistryValueKindToStringConverter.Instance}}"/>
                 <GridViewColumn Header="Value">
