@@ -13,11 +13,12 @@
 
         private static readonly SolidColorBrush RedBrush = new SolidColorBrush(Colors.Crimson);
 
-        public static UsedSpaceColourConverter Instance { get; } = new UsedSpaceColourConverter();
+        public static UsedSpaceColourConverter Default { get; } = new UsedSpaceColourConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Debug.Assert(value != null, $"{nameof(value)} != null", "Conversion value should not be null.");
+
             return (double)value > 80 ? RedBrush : BlueBrush;
         }
 

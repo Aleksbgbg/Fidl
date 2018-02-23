@@ -11,7 +11,7 @@
     [ValueConversion(typeof(RegistryValueKind), typeof(BitmapSource))]
     internal class RegistryValueImageConverter : IValueConverter
     {
-        public static RegistryValueImageConverter Instance { get; } = new RegistryValueImageConverter();
+        public static RegistryValueImageConverter Default { get; } = new RegistryValueImageConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

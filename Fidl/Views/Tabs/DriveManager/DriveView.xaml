@@ -13,7 +13,7 @@
         <StackPanel Width="420" VerticalAlignment="Center" Margin="5">
             <DockPanel>
                 <Image Source="{Binding Drive.Path, Mode=OneWay,
-                        Converter={x:Static Converters:DriveImageConverter.Instance}}" Height="20" Margin="5, 0"/>
+                        Converter={x:Static Converters:DriveImageConverter.Default}}" Height="20" Margin="5, 0"/>
 
                 <Button DockPanel.Dock="Right" x:Name="UpdateVolumeLabel"
                         Content="Apply" ToolTip="{Binding DriveRenameDisabledMessage, Mode=OneWay}"
@@ -69,7 +69,7 @@
 
                 <!-- Colour Rectangles -->
                 <Rectangle Fill="{Binding Drive.UsedSpacePercentage, Mode=OneWay,
-                        Converter={x:Static Converters:UsedSpaceColourConverter.Instance}}"
+                        Converter={x:Static Converters:UsedSpaceColourConverter.Default}}"
                            Height="16" Width="16" Margin="5, 0, 0, 0"/>
                 <Rectangle Grid.Row="1" Fill="Gray" Height="16" Width="16" Margin="5, 0, 0, 0"/>
 
@@ -92,27 +92,27 @@
                 <!-- Space (appropriate data size) -->
                 <TextBlock Grid.Column="4"
                            Text="{Binding Drive.UsedSpace,
-                        Converter={x:Static Converters:DigitalStorageConverter.Instance}}"
+                        Converter={x:Static Converters:DigitalStorageConverter.Default}}"
                            HorizontalAlignment="Right" Margin="5, 2"/>
                 <TextBlock Grid.Column="4" Grid.Row="1"
                            Text="{Binding Drive.FreeSpace, Mode=OneWay,
-                        Converter={x:Static Converters:DigitalStorageConverter.Instance}}"
+                        Converter={x:Static Converters:DigitalStorageConverter.Default}}"
                            HorizontalAlignment="Right" Margin="5, 2"/>
                 <TextBlock Grid.Column="4" Grid.Row="3"
                            Text="{Binding Drive.TotalSize, Mode=OneWay,
-                        Converter={x:Static Converters:DigitalStorageConverter.Instance}}"
+                        Converter={x:Static Converters:DigitalStorageConverter.Default}}"
                            HorizontalAlignment="Right" Margin="5, 2"/>
 
                 <!-- Percentage of Space Used -->
                 <TextBlock Grid.Column="6"
                            Foreground="{Binding Drive.UsedSpacePercentage, Mode=OneWay,
-                        Converter={x:Static Converters:UsedSpaceColourConverter.Instance}}"
+                        Converter={x:Static Converters:UsedSpaceColourConverter.Default}}"
                            HorizontalAlignment="Right" Margin="5, 2">
                     <Run Text="{Binding Drive.UsedSpacePercentage, Mode=OneWay, StringFormat={}{0:F2}}"/>%
                 </TextBlock>
                 <TextBlock Grid.Column="6" Grid.Row="1" Foreground="Gray" HorizontalAlignment="Right" Margin="5, 2">
                     <Run Text="{Binding Drive.UsedSpacePercentage, Mode=OneWay, StringFormat={}{0:F2},
-                        Converter={x:Static Converters:FreeSpacePercentageConverter.Instance}}"/>%
+                        Converter={x:Static Converters:FreeSpacePercentageConverter.Default}}"/>%
                 </TextBlock>
 
                 <!-- Separator -->
@@ -121,12 +121,12 @@
 
             <ProgressBar Height="10" Value="{Binding Drive.UsedSpacePercentage, Mode=OneWay}"
                          Foreground="{Binding Drive.UsedSpacePercentage, Mode=OneWay,
-                    Converter={x:Static Converters:UsedSpaceColourConverter.Instance}}"
+                    Converter={x:Static Converters:UsedSpaceColourConverter.Default}}"
                          Margin="5"/>
 
             <TextBlock HorizontalAlignment="Center" Margin="5">
                         Drive [<Run Text="{Binding Drive.Path, Mode=OneWay,
-                            Converter={x:Static Converters:DriveLetterConverter.Instance}}"/>]
+                            Converter={x:Static Converters:DriveLetterConverter.Default}}"/>]
             </TextBlock>
 
             <Separator Margin="0, 5"/>

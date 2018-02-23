@@ -15,10 +15,10 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding Value.Kind, Mode=OneTime,
-                                    Converter={x:Static Converters:RegistryValueImageConverter.Instance}}"
+                                    Converter={x:Static Converters:RegistryValueImageConverter.Default}}"
                                        Height="15"/>
                                 <TextBlock Text="{Binding Value.Name, Mode=OneTime,
-                                    Converter={x:Static Converters:RegistryValueNameConverter.Instance}}"
+                                    Converter={x:Static Converters:RegistryValueNameConverter.Default}}"
                                            Margin="5, 0"/>
                             </StackPanel>
                         </DataTemplate>
@@ -26,13 +26,13 @@
                 </GridViewColumn>
                 
                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
-                    Converter={x:Static Converters:RegistryValueKindToStringConverter.Instance}}"/>
+                    Converter={x:Static Converters:RegistryValueKindToStringConverter.Default}}"/>
                 
                 <GridViewColumn Header="Value">
                     <GridViewColumn.DisplayMemberBinding>
-                        <MultiBinding Converter="{x:Static Converters:RegistryValueDisplayConverter.Instance}" Mode="OneTime">
+                        <MultiBinding Converter="{x:Static Converters:RegistryValueDisplayConverter.Default}" Mode="OneTime">
                             <Binding Path="Value.StoredValue" Mode="OneTime"
-                                     Converter="{x:Static Converters:RegistryValueConverter.Instance}"/>
+                                     Converter="{x:Static Converters:RegistryValueConverter.Default}"/>
                             <Binding Path="Value.Kind" Mode="OneTime"/>
                         </MultiBinding>
                     </GridViewColumn.DisplayMemberBinding>

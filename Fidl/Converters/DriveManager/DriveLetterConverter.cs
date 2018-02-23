@@ -8,7 +8,7 @@
     [ValueConversion(typeof(string), typeof(string))]
     internal class DriveLetterConverter : IValueConverter
     {
-        public static DriveLetterConverter Instance { get; } = new DriveLetterConverter();
+        public static DriveLetterConverter Default { get; } = new DriveLetterConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

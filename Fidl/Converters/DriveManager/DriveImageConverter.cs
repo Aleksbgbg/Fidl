@@ -14,7 +14,7 @@
     {
         private const int ImageRetrievalFlags = 0x100; // Flag 0x100 represents 'SHGFI_ICON' (retrieve the handle to the icon that represents the file)
 
-        public static DriveImageConverter Instance { get; } = new DriveImageConverter();
+        public static DriveImageConverter Default { get; } = new DriveImageConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

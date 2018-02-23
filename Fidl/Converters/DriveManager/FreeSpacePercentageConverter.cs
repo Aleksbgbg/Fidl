@@ -8,7 +8,7 @@
     [ValueConversion(typeof(double), typeof(double))]
     internal class FreeSpacePercentageConverter : IValueConverter
     {
-        public static FreeSpacePercentageConverter Instance { get; } = new FreeSpacePercentageConverter();
+        public static FreeSpacePercentageConverter Default { get; } = new FreeSpacePercentageConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -11,7 +11,7 @@
     [ValueConversion(typeof(object), typeof(string))]
     internal class RegistryValueDisplayConverter : IMultiValueConverter
     {
-        public static RegistryValueDisplayConverter Instance { get; } = new RegistryValueDisplayConverter();
+        public static RegistryValueDisplayConverter Default { get; } = new RegistryValueDisplayConverter();
 
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

@@ -10,7 +10,7 @@
     [ValueConversion(typeof(RegistryValueKind), typeof(string))]
     internal class RegistryValueKindToStringConverter : IValueConverter
     {
-        public static RegistryValueKindToStringConverter Instance { get; } = new RegistryValueKindToStringConverter();
+        public static RegistryValueKindToStringConverter Default { get; } = new RegistryValueKindToStringConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

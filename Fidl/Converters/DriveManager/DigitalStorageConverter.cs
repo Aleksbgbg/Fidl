@@ -9,7 +9,7 @@
     {
         private static readonly char[] StoragePrefixes = { 'K', 'M', 'G', 'T', 'P', 'E' };
 
-        public static DigitalStorageConverter Instance { get; } = new DigitalStorageConverter();
+        public static DigitalStorageConverter Default { get; } = new DigitalStorageConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

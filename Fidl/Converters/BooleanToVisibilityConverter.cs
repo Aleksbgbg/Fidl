@@ -9,7 +9,7 @@
     [ValueConversion(typeof(bool), typeof(Visibility))]
     internal class BooleanToVisibilityConverter : IValueConverter
     {
-        public static BooleanToVisibilityConverter Instance { get; } = new BooleanToVisibilityConverter();
+        public static BooleanToVisibilityConverter Default { get; } = new BooleanToVisibilityConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

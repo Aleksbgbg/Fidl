@@ -26,7 +26,7 @@
 
             <TextBlock TextWrapping="Wrap" Foreground="Crimson" FontSize="16"
                        Visibility="{Binding ApplicationInfo.LaunchedAsAdministrator, Mode=OneTime,
-                Converter={x:Static Converters:InvertedBooleanToVisibilityConverter.Instance}}"
+                Converter={x:Static Converters:InvertedBooleanToVisibilityConverter.Default}}"
                        Margin="5, 0">
                 You have not launched Fidl as administrator. Some features may be disabled or non-functional.
             </TextBlock>

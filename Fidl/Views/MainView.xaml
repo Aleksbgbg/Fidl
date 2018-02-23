@@ -23,7 +23,7 @@
                     <!-- Hacky way to prevent only the last child's icon showing. -->
                     <Image x:Key="MenuIconImage" x:Shared="false"
                            Source="{Binding IconName, Mode=OneTime,
-                                    Converter={x:Static Converters:ResourceConverter.Instance}}"/>
+                                    Converter={x:Static Converters:ResourceConverter.Default}}"/>
                 </MenuItem.Resources>
 
                 <MenuItem.ItemContainerStyle>

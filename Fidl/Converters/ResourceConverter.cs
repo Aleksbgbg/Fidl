@@ -9,7 +9,7 @@
     [ValueConversion(typeof(string), typeof(object))]
     internal class ResourceConverter : IValueConverter
     {
-        public static ResourceConverter Instance { get; } = new ResourceConverter();
+        public static ResourceConverter Default { get; } = new ResourceConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

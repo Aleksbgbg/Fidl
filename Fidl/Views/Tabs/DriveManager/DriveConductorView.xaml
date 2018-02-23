@@ -33,26 +33,26 @@
                     <DataTemplate>
                         <DockPanel>
                             <Image DockPanel.Dock="Left" Source="{Binding Drive.Path, Mode=OneWay,
-                                Converter={x:Static Converters:DriveImageConverter.Instance}}" Margin="0, 0, 5, 0"/>
+                                Converter={x:Static Converters:DriveImageConverter.Default}}" Margin="0, 0, 5, 0"/>
 
                             <TextBlock DockPanel.Dock="Top" Margin="0, 2">
                                 [<Run Text="{Binding Drive.Path, Mode=OneWay,
-                                    Converter={x:Static Converters:DriveLetterConverter.Instance}}"/>]
+                                    Converter={x:Static Converters:DriveLetterConverter.Default}}"/>]
                                 <Run Text="{Binding Drive.Name, Mode=OneWay}"/>
                             </TextBlock>
 
                             <TextBlock DockPanel.Dock="Bottom" Foreground="Gray" Margin="0, 2">
                                 <Run Text="{Binding Drive.FreeSpace, Mode=OneWay,
-                                    Converter={x:Static Converters:DigitalStorageConverter.Instance}}"/>
+                                    Converter={x:Static Converters:DigitalStorageConverter.Default}}"/>
                                 free of
                                 <Run Text="{Binding Drive.TotalSize, Mode=OneWay,
-                                    Converter={x:Static Converters:DigitalStorageConverter.Instance}}"/>
+                                    Converter={x:Static Converters:DigitalStorageConverter.Default}}"/>
                             </TextBlock>
 
                             <ProgressBar Value="{Binding Drive.UsedSpacePercentage, Mode=OneWay}"
                                          Height="10"
                                          Foreground="{Binding Drive.UsedSpacePercentage, Mode=OneWay,
-                                Converter={x:Static Converters:UsedSpaceColourConverter.Instance}}"/>
+                                Converter={x:Static Converters:UsedSpaceColourConverter.Default}}"/>
                         </DockPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

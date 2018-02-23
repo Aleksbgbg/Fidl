@@ -7,7 +7,7 @@
     [ValueConversion(typeof(object), typeof(string))]
     internal class RegistryValueConverter : IValueConverter
     {
-        public static RegistryValueConverter Instance { get; } = new RegistryValueConverter();
+        public static RegistryValueConverter Default { get; } = new RegistryValueConverter();
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
