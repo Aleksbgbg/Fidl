@@ -4,7 +4,14 @@
 
     internal class Value
     {
-        internal Value(RegistryKey registryKey, string name, bool exists = true)
+        internal Value()
+        {
+            Name = "(default)";
+            Kind = RegistryValueKind.String;
+            StoredValue = "(value not set)";
+        }
+
+        internal Value(RegistryKey registryKey, string name)
         {
             Name = name == string.Empty ? "(default)" : name;
 
@@ -15,7 +22,7 @@
                 return;
             }
 
-            Kind = exists ? registryKey.GetValueKind(name) : RegistryValueKind.String;
+            Kind = registryKey.GetValueKind(name);
             StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames) ?? "(value not set)";
         }
 

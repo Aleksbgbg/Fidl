@@ -33,7 +33,7 @@
 
             if (!keyValues.Contains(string.Empty))
             {
-                Values.Add(_registryFactory.MakeValue(new Value(message.Key.RegistryKey, string.Empty, false)));
+                Values.Add(_registryFactory.MakeValue(new Value()));
             }
 
             Values.AddRange(keyValues.Select(valueName => new Value(message.Key.RegistryKey, valueName))
