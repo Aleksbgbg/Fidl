@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor"
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:ValueDisplayViewModel}">
@@ -10,7 +11,8 @@
         <ListView.View>
             <GridView>
                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Value.Name, Mode=OneTime}"/>
-                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime}"/>
+                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
+                    Converter={x:Static Converters:RegistryValueKindToStringConverter.Instance}}"/>
                 <GridViewColumn Header="Value" DisplayMemberBinding="{Binding Value.StoredValue, Mode=OneTime}"/>
             </GridView>
         </ListView.View>
