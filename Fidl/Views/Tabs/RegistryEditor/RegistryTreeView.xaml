@@ -6,7 +6,7 @@
 			 xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance RegistryEditor:RegistryTreeViewModel}">
-    <TreeView ItemsSource="{Binding RootKey.Keys}">
+    <TreeView ItemsSource="{Binding RootKey.Keys, Mode=OneTime}">
         <TreeView.Resources>
             <ResourceDictionary Source="KeyNodeView.xaml"/>
         </TreeView.Resources>

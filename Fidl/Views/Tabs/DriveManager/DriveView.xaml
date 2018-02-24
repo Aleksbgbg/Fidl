@@ -41,10 +41,10 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Text="Drive Type:" Margin="5, 2"/>
-                <TextBlock Grid.Column="1" Text="{Binding Drive.Type}" Margin="5, 0"/>
+                <TextBlock Grid.Column="1" Text="{Binding Drive.Type, Mode=OneWay}" Margin="5, 0"/>
 
                 <TextBlock Grid.Row="1" Text="File System:" Margin="5, 2"/>
-                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Drive.FileSystem}" Margin="5, 0"/>
+                <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding Drive.FileSystem, Mode=OneWay}" Margin="5, 0"/>
             </Grid>
 
             <Separator Margin="0, 5"/>
@@ -91,7 +91,7 @@
 
                 <!-- Space (appropriate data size) -->
                 <TextBlock Grid.Column="4"
-                           Text="{Binding Drive.UsedSpace,
+                           Text="{Binding Drive.UsedSpace, Mode=OneWay,
                         Converter={x:Static Converters:DigitalStorageConverter.Default}}"
                            HorizontalAlignment="Right" Margin="5, 2"/>
                 <TextBlock Grid.Column="4" Grid.Row="1"

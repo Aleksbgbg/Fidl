@@ -19,7 +19,8 @@
         
         <Separator DockPanel.Dock="Bottom" Margin="5"/>
 
-        <TextBlock Text="{Binding Message}" TextAlignment="Center" TextWrapping="Wrap"
+        <TextBlock Text="{Binding Message, Mode=OneTime}"
+                   TextAlignment="Center" TextWrapping="Wrap"
                    Margin="10"/>
     </DockPanel>
 </Window>

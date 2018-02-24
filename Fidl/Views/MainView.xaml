@@ -18,7 +18,7 @@
                 </MenuItem>
             </MenuItem>
             
-            <MenuItem Header="_Navigation" ItemsSource="{Binding TabConductorViewModel.Items}">
+            <MenuItem Header="_Navigation" ItemsSource="{Binding TabConductorViewModel.Items, Mode=OneTime}">
                 <MenuItem.Resources>
                     <!-- Hacky way to prevent only the last child's icon showing. -->
                     <Image x:Key="MenuIconImage" x:Shared="false"
@@ -40,6 +40,6 @@
             </MenuItem>
         </Menu>
 
-        <ContentControl Caliburn:View.Model="{Binding TabConductorViewModel}"/>
+        <ContentControl Caliburn:View.Model="{Binding TabConductorViewModel, Mode=OneTime}"/>
     </DockPanel>
 </UserControl>

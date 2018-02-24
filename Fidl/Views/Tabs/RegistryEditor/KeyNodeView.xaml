@@ -25,12 +25,12 @@
         </Style.Triggers>
     </Style>
 
-    <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys}">
+    <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys, Mode=OneTime}">
         <HierarchicalDataTemplate.ItemTemplate>
-            <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys}">
+            <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}" ItemsSource="{Binding Keys, Mode=OneTime}">
                 <HierarchicalDataTemplate.ItemTemplate>
                     <HierarchicalDataTemplate DataType="{x:Type RegistryEditor:KeyNodeViewModel}"
-                                              ItemsSource="{Binding Keys}">
+                                              ItemsSource="{Binding Keys, Mode=OneTime}">
                         <StackPanel Orientation="Horizontal">
                             <StackPanel.ContextMenu>
                                 <ContextMenu>
@@ -39,7 +39,7 @@
                             </StackPanel.ContextMenu>
 
                             <Image Height="20" Style="{StaticResource Image.TreeViewItem}"/>
-                            <TextBlock Text="{Binding DisplayName}" Margin="5, 0"/>
+                            <TextBlock Text="{Binding DisplayName, Mode=OneTime}" Margin="5, 0"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </HierarchicalDataTemplate.ItemTemplate>
@@ -52,7 +52,7 @@
                     </StackPanel.ContextMenu>
 
                     <Image Height="20" Style="{StaticResource Image.TreeViewItem}"/>
-                    <TextBlock Text="{Binding DisplayName}" Margin="5, 0"/>
+                    <TextBlock Text="{Binding DisplayName, Mode=OneTime}" Margin="5, 0"/>
                 </StackPanel>
             </HierarchicalDataTemplate>
         </HierarchicalDataTemplate.ItemTemplate>

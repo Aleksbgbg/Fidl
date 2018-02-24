@@ -12,8 +12,8 @@
         WindowStartupLocation="CenterScreen">
     <Window.InputBindings>
         <KeyBinding Gesture="Ctrl+Tab" Modifiers="Control" Key="Tab"
-                    Command="{Binding SwitchTabCommand}"/>
+                    Command="{Binding SwitchTabCommand, Mode=OneTime}"/>
     </Window.InputBindings>
     
-    <ContentControl Caliburn:View.Model="{Binding MainViewModel}"/>
+    <ContentControl Caliburn:View.Model="{Binding MainViewModel, Mode=OneTime}"/>
 </Window>

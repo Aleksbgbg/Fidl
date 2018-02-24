@@ -15,7 +15,7 @@
                     <Image Source="{Binding IconName, Mode=OneTime,
                         Converter={x:Static Converters:ResourceConverter.Default}}"
                            Height="20" Margin="0, 0, 5, 0"/>
-                    <TextBlock Text="{Binding DisplayName}"/>
+                    <TextBlock Text="{Binding DisplayName, Mode=OneTime}"/>
                 </StackPanel>
             </DataTemplate>
         </TabControl.ItemTemplate>
@@ -29,7 +29,7 @@
 
                         <TextBlock DockPanel.Dock="Top" Text="{Binding DisplayName}" FontSize="16"
                                    FontWeight="DemiBold" Margin="5, 5, 5, 0"/>
-                        <TextBlock Text="{Binding Description}" Margin="5, 0, 5, 5"/>
+                        <TextBlock Text="{Binding Description, Mode=OneTime}" Margin="5, 0, 5, 5"/>
                     </DockPanel>
 
                     <ContentControl Caliburn:View.Model="{Binding}"/>

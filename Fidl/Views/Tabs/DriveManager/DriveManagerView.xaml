@@ -7,5 +7,5 @@
 			 xmlns:DriveManager="clr-namespace:Fidl.ViewModels.Tabs.DriveManager"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance DriveManager:DriveManagerViewModel}">
-    <ContentControl Caliburn:View.Model="{Binding DriveConductorViewModel}"/>
+    <ContentControl Caliburn:View.Model="{Binding DriveConductorViewModel, Mode=OneTime}"/>
 </UserControl>

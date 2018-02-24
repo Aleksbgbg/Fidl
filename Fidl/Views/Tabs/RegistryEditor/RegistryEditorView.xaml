@@ -20,11 +20,11 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <ContentControl Caliburn:View.Model="{Binding RegistryTreeViewModel}"/>
+            <ContentControl Caliburn:View.Model="{Binding RegistryTreeViewModel, Mode=OneTime}"/>
 
             <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
-            
-            <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ValueDisplayViewModel}"/>
+
+            <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ValueDisplayViewModel, Mode=OneTime}"/>
         </Grid>
     </DockPanel>
 </UserControl>
