@@ -22,7 +22,7 @@
 
             <ContentControl Caliburn:View.Model="{Binding RegistryTreeViewModel, Mode=OneTime}"/>
 
-            <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
+            <GridSplitter Style="{StaticResource GridSplitter.ThreeWay}"/>
 
             <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ValueDisplayViewModel, Mode=OneTime}"/>
         </Grid>

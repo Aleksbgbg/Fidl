@@ -65,7 +65,7 @@
             </ListBox>
         </DockPanel>
 
-        <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
+        <GridSplitter Style="{StaticResource GridSplitter.ThreeWay}"/>
 
         <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ActiveItem}"/>
     </Grid>
