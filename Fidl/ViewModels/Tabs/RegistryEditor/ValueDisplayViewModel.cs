@@ -28,22 +28,38 @@
 
         public IObservableCollection<IValueViewModel> Values { get; } = new BindableCollection<IValueViewModel>();
 
+        private Key _selectedKey;
+        public Key SelectedKey
+        {
+            get => _selectedKey;
+
+            set
+            {
+                if (_selectedKey == value) return;
+
+                _selectedKey = value;
+                NotifyOfPropertyChange(() => SelectedKey);
+            }
+        }
+
         public void Handle(IKeyNodeViewModel message)
         {
             if (!message.IsSelected) return;
 
             Values.Clear();
 
-            if (message.Key.RegistryKey == null) return;
+            SelectedKey = message.Key;
 
-            string[] keyValues = message.Key.RegistryKey.GetValueNames();
+            if (SelectedKey.RegistryKey == null) return;
+
+            string[] keyValues = SelectedKey.RegistryKey.GetValueNames();
 
             if (!keyValues.Contains(string.Empty))
             {
                 Values.Add(_registryFactory.MakeValue(new Value()));
             }
 
-            Values.AddRange(keyValues.Select(valueName => new Value(message.Key.RegistryKey, valueName))
+            Values.AddRange(keyValues.Select(valueName => new Value(SelectedKey.RegistryKey, valueName))
                                      .Select(_registryFactory.MakeValue));
         }
 

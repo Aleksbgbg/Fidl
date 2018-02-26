@@ -39,5 +39,24 @@
                 </GridViewColumn>
             </GridView>
         </ListView.View>
+        
+        <ListView.Style>
+            <Style TargetType="ListView" BasedOn="{StaticResource {x:Type ListView}}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding SelectedKey.IsAccessible}" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <Image Source="{StaticResource RestrictedAccess}" Height="40"/>
+                                        <TextBlock Text="The selected registry key has restricted security access."/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ListView.Style>
     </ListView>
 </UserControl>

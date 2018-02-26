@@ -9,8 +9,9 @@
 	<BitmapImage x:Key="HardDrive" UriSource="/Images/Hard Drive.png"/>
 	<BitmapImage x:Key="Logo" UriSource="/Images/Logo.png"/>
 	<BitmapImage x:Key="Regedit" UriSource="/Images/Regedit.png"/>
-    <BitmapImage x:Key="RegistryBinary" UriSource="/Images/Registry Binary.ico"/>
-    <BitmapImage x:Key="RegistryString" UriSource="/Images/Registry String.ico"/>
+	<BitmapImage x:Key="RegistryBinary" UriSource="/Images/Registry Binary.ico"/>
+	<BitmapImage x:Key="RegistryString" UriSource="/Images/Registry String.ico"/>
 	<BitmapImage x:Key="Replace" UriSource="/Images/Replace.png"/>
+	<BitmapImage x:Key="RestrictedAccess" UriSource="/Images/Restricted Access.png"/>
 	<BitmapImage x:Key="Tick" UriSource="/Images/Tick.png"/>
 </ResourceDictionary>
