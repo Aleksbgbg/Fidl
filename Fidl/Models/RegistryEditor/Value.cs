@@ -1,16 +1,16 @@
 ﻿namespace Fidl.Models.RegistryEditor
 {
-    using System;
+    using Caliburn.Micro;
+
+    using Fidl.Extensions;
 
     using Microsoft.Win32;
 
-    internal class Value
+    internal class Value : PropertyChangedBase
     {
-        private readonly RegistryKey _registryKey;
-
         internal Value(RegistryKey registryKey)
         {
-            _registryKey = registryKey;
+            RegistryKey = registryKey;
 
             Name = string.Empty;
             Kind = RegistryValueKind.String;
@@ -19,7 +19,7 @@
 
         internal Value(RegistryKey registryKey, string name)
         {
-            _registryKey = registryKey;
+            RegistryKey = registryKey;
 
             Name = name;
 
@@ -34,44 +34,45 @@
             StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames);
         }
 
-        public string Name { get; }
+        private string _name;
+        public string Name
+        {
+            get => _name;
+
+            private set
+            {
+                if (_name == value) return;
+
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
+            }
+        }
 
         public RegistryValueKind Kind { get; }
 
         public object StoredValue { get; }
 
+        internal RegistryKey RegistryKey { get; }
+
         internal void Delete()
         {
-            int firstSeparatorIndex = _registryKey.Name.IndexOf('\\');
-
-            RegistryKey GetRootKey()
-            {
-                switch (_registryKey.Name.Substring(0, firstSeparatorIndex))
-                {
-                    case "HKEY_CLASSES_ROOT":
-                        return Registry.ClassesRoot;
-
-                    case "HKEY_CURRENT_USER":
-                        return Registry.CurrentUser;
-
-                    case "HKEY_LOCAL_MACHINE":
-                        return Registry.LocalMachine;
-
-                    case "HKEY_USERS":
-                        return Registry.Users;
-
-                    case "HKEY_CURRENT_CONFIG":
-                        return Registry.CurrentConfig;
-
-                    default:
-                        throw new InvalidOperationException("Non-existant root key received.");
-                }
-            }
-
-            using (RegistryKey writeableKey = GetRootKey().OpenSubKey(_registryKey.Name.Substring(firstSeparatorIndex + 1), true))
+            using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
             {
                 writeableKey.DeleteValue(Name == string.Empty ? null : Name);
             }
+        }
+
+        internal void Rename(string newName)
+        {
+            if (Name == newName) return;
+
+            using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
+            {
+                writeableKey.DeleteValue(Name);
+                writeableKey.SetValue(newName, StoredValue, Kind);
+            }
+
+            Name = newName;
         }
     }
 }

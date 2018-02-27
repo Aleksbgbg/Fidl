@@ -9,7 +9,7 @@
 
     using Caliburn.Micro;
 
-    using Fidl.EventArgs;
+    using Fidl.EventArgs.RegistryEditor;
     using Fidl.Factories.Interfaces;
     using Fidl.Helpers;
     using Fidl.Models.RegistryEditor;
@@ -114,7 +114,7 @@
 
         private void ValueDeleted(object sender, ValueDeletedEventArgs e)
         {
-            RefreshValues();
+            Values.Remove(e.Deleted);
         }
 
         private class ValueComparer : IComparer, IComparer<IValueViewModel>

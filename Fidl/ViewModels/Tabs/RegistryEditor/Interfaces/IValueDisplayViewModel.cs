@@ -7,5 +7,7 @@
     internal interface IValueDisplayViewModel : IViewModelBase
     {
         IObservableCollection<IValueViewModel> Values { get; }
+
+        void RefreshValues();
     }
 }

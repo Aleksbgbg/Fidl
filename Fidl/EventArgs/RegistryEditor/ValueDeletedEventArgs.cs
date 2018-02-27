@@ -1,4 +1,4 @@
-﻿namespace Fidl.EventArgs
+﻿namespace Fidl.EventArgs.RegistryEditor
 {
     using System;
 

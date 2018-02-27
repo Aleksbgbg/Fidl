@@ -89,14 +89,17 @@
     <Compile Include="Converters\RegistryEditor\RegistryValueConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueDisplayConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueImageConverter.cs" />
+    <Compile Include="Converters\RegistryEditor\RegistryValueIsNotDefaultConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueKindToStringConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueNameConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
-    <Compile Include="EventArgs\ValueDeletedEventArgs.cs" />
+    <Compile Include="EventArgs\RegistryEditor\ValueDeletedEventArgs.cs" />
+    <Compile Include="Extensions\RegistryKeyExtensions.cs" />
     <Compile Include="Factories\DriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IDriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IRegistryFactory.cs" />
     <Compile Include="Factories\RegistryFactory.cs" />
+    <Compile Include="Helpers\FocusOnVisibleBehavior.cs" />
     <Compile Include="Helpers\LogicalStringComparer.cs" />
     <Compile Include="Models\DriveManager\FileSystem.cs" />
     <Compile Include="Helpers\DriveManager\FileSystemNamingConvention.cs" />
@@ -287,9 +290,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +333,10 @@
   <ItemGroup>
     <Resource Include="Images\Restricted Access.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Edit File.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

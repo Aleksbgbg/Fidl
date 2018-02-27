@@ -2,11 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Caliburn="http://www.caliburnproject.org"
-             xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor"
+             xmlns:Converters="clr-namespace:Fidl.Converters"
              xmlns:Helpers="clr-namespace:Fidl.Helpers"
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
+             xmlns:RegistryEditorConverters="clr-namespace:Fidl.Converters.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:ValueDisplayViewModel}">
     <ListView ItemsSource="{Binding Values, Mode=OneTime}">
@@ -17,24 +19,36 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="{Binding Value.Kind, Mode=OneTime,
-                                    Converter={x:Static Converters:RegistryValueImageConverter.Default}}"
+                                    Converter={x:Static RegistryEditorConverters:RegistryValueImageConverter.Default}}"
                                        Height="15"/>
-                                <TextBlock Text="{Binding Value.Name, Mode=OneTime,
-                                    Converter={x:Static Converters:RegistryValueNameConverter.Default}}"
-                                           Margin="5, 0"/>
+                                <Grid Margin="5, 0">
+                                    <TextBlock Text="{Binding Value.Name, Mode=OneWay,
+                                        Converter={x:Static RegistryEditorConverters:RegistryValueNameConverter.Default}}"
+                                               Visibility="{Binding IsRenaming, Mode=OneWay,
+                                        Converter={x:Static Converters:InvertedBooleanToVisibilityConverter.Default}}"/>
+                                    <TextBox Text="{Binding NewName, UpdateSourceTrigger=PropertyChanged}"
+                                             Visibility="{Binding IsRenaming, Mode=OneWay,
+                                        Converter={x:Static Converters:BooleanToVisibilityConverter.Default}}"
+                                             Caliburn:Message.Attach="[Event LostFocus] = [Action RenameBoxLostFocus];
+                                                                      [Event KeyDown] = [Action RenameBoxKeyDown($eventArgs)]">
+                                        <i:Interaction.Behaviors>
+                                            <Helpers:FocusOnVisibleBehavior/>
+                                        </i:Interaction.Behaviors>
+                                    </TextBox>
+                                </Grid>
                             </StackPanel>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </GridViewColumn>
                 
                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Value.Kind, Mode=OneTime,
-                    Converter={x:Static Converters:RegistryValueKindToStringConverter.Default}}"/>
+                    Converter={x:Static RegistryEditorConverters:RegistryValueKindToStringConverter.Default}}"/>
                 
                 <GridViewColumn Header="Value">
                     <GridViewColumn.DisplayMemberBinding>
-                        <MultiBinding Converter="{x:Static Converters:RegistryValueDisplayConverter.Default}" Mode="OneTime">
+                        <MultiBinding Converter="{x:Static RegistryEditorConverters:RegistryValueDisplayConverter.Default}" Mode="OneTime">
                             <Binding Path="Value.StoredValue" Mode="OneTime"
-                                     Converter="{x:Static Converters:RegistryValueConverter.Default}"/>
+                                     Converter="{x:Static RegistryEditorConverters:RegistryValueConverter.Default}"/>
                             <Binding Path="Value.Kind" Mode="OneTime"/>
                         </MultiBinding>
                     </GridViewColumn.DisplayMemberBinding>
@@ -63,11 +77,18 @@
         
         <ListView.ItemContainerStyle>
             <Style TargetType="ListViewItem">
+                <Setter Property="Caliburn:Action.TargetWithoutContext" Value="{Binding Mode=OneTime}"/>
+                <Setter Property="Caliburn:Message.Attach" Value="[Event KeyDown] = [Action KeyDown($eventArgs)]"/>
+
                 <Setter Property="ContextMenu">
                     <Setter.Value>
                         <ContextMenu Caliburn:Action.TargetWithoutContext="{Binding Mode=OneTime}">
                             <MenuItem Header="Delete" Helpers:ImageHelper.AttachImage="{StaticResource Delete}"
                                       Caliburn:Message.Attach="Delete"/>
+                            <MenuItem Header="Rename" Helpers:ImageHelper.AttachImage="{StaticResource EditFile}"
+                                      IsEnabled="{Binding Value.Name, Mode=OneTime,
+                                Converter={x:Static RegistryEditorConverters:RegistryValueIsNotDefaultConverter.Default}}"
+                                      Caliburn:Message.Attach="StartRenaming"/>
                         </ContextMenu>
                     </Setter.Value>
                 </Setter>

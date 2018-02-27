@@ -2,7 +2,7 @@
 {
     using System;
 
-    using Fidl.EventArgs;
+    using Fidl.EventArgs.RegistryEditor;
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Interfaces;
 
@@ -13,5 +13,9 @@
         Value Value { get; }
 
         void Initialise(Value value);
+
+        bool IsRenaming { get; }
+
+        void Delete();
     }
 }
