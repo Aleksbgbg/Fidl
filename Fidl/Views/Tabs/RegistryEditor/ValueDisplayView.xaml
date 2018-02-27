@@ -73,5 +73,12 @@
                 </Setter>
             </Style>
         </ListView.ItemContainerStyle>
+        
+        <ListView.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Refresh" Helpers:ImageHelper.AttachImage="{StaticResource Replace}"
+                          Caliburn:Message.Attach="RefreshValues"/>
+            </ContextMenu>
+        </ListView.ContextMenu>
     </ListView>
 </UserControl>

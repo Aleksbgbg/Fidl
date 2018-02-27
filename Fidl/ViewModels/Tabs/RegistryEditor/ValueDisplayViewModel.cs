@@ -92,7 +92,7 @@
             RefreshValues();
         }
 
-        private void RefreshValues()
+        public void RefreshValues()
         {
             // Necessary as CollectionChanged event does not provide old items on Reset
             // Consider alternative solutions
