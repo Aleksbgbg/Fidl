@@ -92,6 +92,7 @@
     <Compile Include="Converters\RegistryEditor\RegistryValueKindToStringConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueNameConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
+    <Compile Include="EventArgs\ValueDeletedEventArgs.cs" />
     <Compile Include="Factories\DriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IDriveFactory.cs" />
     <Compile Include="Factories\Interfaces\IRegistryFactory.cs" />
@@ -286,7 +287,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="EventArgs\" />
     <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>

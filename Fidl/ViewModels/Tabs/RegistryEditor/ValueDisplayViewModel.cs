@@ -2,12 +2,14 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Collections.Specialized;
     using System.Diagnostics;
     using System.Linq;
     using System.Windows.Data;
 
     using Caliburn.Micro;
 
+    using Fidl.EventArgs;
     using Fidl.Factories.Interfaces;
     using Fidl.Helpers;
     using Fidl.Models.RegistryEditor;
@@ -24,6 +26,45 @@
             eventAggregator.Subscribe(this);
 
             ((ListCollectionView)CollectionViewSource.GetDefaultView(Values)).CustomSort = ValueComparer.Default;
+
+            Values.CollectionChanged += (sender, e) =>
+            {
+                void SubscribeNewItems()
+                {
+                    foreach (IValueViewModel item in e.NewItems)
+                    {
+                        item.Deleted += ValueDeleted;
+                    }
+                }
+
+                void UnsubscribeOldItems()
+                {
+                    foreach (IValueViewModel item in e.OldItems)
+                    {
+                        item.Deleted -= ValueDeleted;
+                    }
+                }
+
+                switch (e.Action)
+                {
+                    case NotifyCollectionChangedAction.Add:
+                        SubscribeNewItems();
+                        break;
+
+                    case NotifyCollectionChangedAction.Remove:
+                        UnsubscribeOldItems();
+                        break;
+
+                    case NotifyCollectionChangedAction.Replace:
+                        SubscribeNewItems();
+                        UnsubscribeOldItems();
+                        break;
+
+                    case NotifyCollectionChangedAction.Reset:
+                        Values.Apply(value => value.Deleted += ValueDeleted);
+                        break;
+                }
+            };
         }
 
         public IObservableCollection<IValueViewModel> Values { get; } = new BindableCollection<IValueViewModel>();
@@ -46,9 +87,18 @@
         {
             if (!message.IsSelected) return;
 
-            Values.Clear();
-
             SelectedKey = message.Key;
+
+            RefreshValues();
+        }
+
+        private void RefreshValues()
+        {
+            // Necessary as CollectionChanged event does not provide old items on Reset
+            // Consider alternative solutions
+            Values.Apply(value => value.Deleted -= ValueDeleted);
+
+            Values.Clear();
 
             if (SelectedKey.RegistryKey == null) return;
 
@@ -56,11 +106,15 @@
 
             if (!keyValues.Contains(string.Empty))
             {
-                Values.Add(_registryFactory.MakeValue(new Value()));
+                Values.Add(_registryFactory.MakeValue(new Value(SelectedKey.RegistryKey)));
             }
 
-            Values.AddRange(keyValues.Select(valueName => new Value(SelectedKey.RegistryKey, valueName))
-                                     .Select(_registryFactory.MakeValue));
+            Values.AddRange(keyValues.Select(valueName => new Value(SelectedKey.RegistryKey, valueName)).Select(_registryFactory.MakeValue));
+        }
+
+        private void ValueDeleted(object sender, ValueDeletedEventArgs e)
+        {
+            RefreshValues();
         }
 
         private class ValueComparer : IComparer, IComparer<IValueViewModel>

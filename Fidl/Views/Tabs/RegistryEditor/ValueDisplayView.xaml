@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor"
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
@@ -58,5 +59,17 @@
                 </Style.Triggers>
             </Style>
         </ListView.Style>
+        
+        <ListView.ItemContainerStyle>
+            <Style TargetType="ListViewItem">
+                <Setter Property="ContextMenu">
+                    <Setter.Value>
+                        <ContextMenu Caliburn:Action.TargetWithoutContext="{Binding Mode=OneTime}">
+                            <MenuItem Header="Delete" Caliburn:Message.Attach="Delete"/>
+                        </ContextMenu>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ListView.ItemContainerStyle>
     </ListView>
 </UserControl>
