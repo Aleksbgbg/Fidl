@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor"
+             xmlns:Helpers="clr-namespace:Fidl.Helpers"
              xmlns:RegistryEditor="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance RegistryEditor:ValueDisplayViewModel}">
@@ -65,7 +66,8 @@
                 <Setter Property="ContextMenu">
                     <Setter.Value>
                         <ContextMenu Caliburn:Action.TargetWithoutContext="{Binding Mode=OneTime}">
-                            <MenuItem Header="Delete" Caliburn:Message.Attach="Delete"/>
+                            <MenuItem Header="Delete" Helpers:ImageHelper.AttachImage="{StaticResource Delete}"
+                                      Caliburn:Message.Attach="Delete"/>
                         </ContextMenu>
                     </Setter.Value>
                 </Setter>

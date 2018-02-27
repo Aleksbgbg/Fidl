@@ -19,12 +19,12 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Bottom">
                 <Button Content="Refresh Drives"
-                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Replace}"
+                        Helpers:ImageHelper.AttachImage="{StaticResource Replace}"
                         Caliburn:Message.Attach="RefreshDrives"
                         Margin="0, 5"/>
                 
                 <Button Content="Open Disk Management"
-                        Helpers:ImageButtonHelper.AttachImage="{StaticResource HardDrive}"
+                        Helpers:ImageHelper.AttachImage="{StaticResource HardDrive}"
                         Helpers:RunCommandHelper.AttachRunCommand="diskmgmt.msc"/>
             </StackPanel>
 

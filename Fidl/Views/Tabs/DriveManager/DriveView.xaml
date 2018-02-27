@@ -18,7 +18,7 @@
                 <Button DockPanel.Dock="Right" x:Name="UpdateVolumeLabel"
                         Content="Apply" ToolTip="{Binding DriveRenameDisabledMessage, Mode=OneWay}"
                         ToolTipService.ShowOnDisabled="True"
-                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Tick}" Margin="5, 0"/>
+                        Helpers:ImageHelper.AttachImage="{StaticResource Tick}" Margin="5, 0"/>
 
                 <TextBox x:Name="NewVolumeLabel" Text="{Binding Drive.Name, Mode=OneWay}"
                          FontSize="14" VerticalContentAlignment="Center"
@@ -133,12 +133,12 @@
 
             <StackPanel Width="200">
                 <Button Content="Select New Icon"
-                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Camera}"
+                        Helpers:ImageHelper.AttachImage="{StaticResource Camera}"
                         Margin="0, 5"
                         Caliburn:Message.Attach="SelectNewIcon"/>
 
                 <Button Content="Restore Default Icon"
-                        Helpers:ImageButtonHelper.AttachImage="{StaticResource Erase}"
+                        Helpers:ImageHelper.AttachImage="{StaticResource Erase}"
                         Margin="0, 5"
                         Caliburn:Message.Attach="RestoreDefaultIcon"/>
             </StackPanel>

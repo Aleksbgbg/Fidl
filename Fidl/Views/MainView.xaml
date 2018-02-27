@@ -5,17 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:Fidl.Converters"
+             xmlns:Helpers="clr-namespace:Fidl.Helpers"
              xmlns:ViewModels="clr-namespace:Fidl.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance ViewModels:MainViewModel}">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="_File">
-                <MenuItem Header="_Exit" Caliburn:Message.Attach="Exit">
-                    <MenuItem.Icon>
-                        <Image Source="{StaticResource Delete}"/>
-                    </MenuItem.Icon>
-                </MenuItem>
+                <MenuItem Header="_Exit" Helpers:ImageHelper.AttachImage="{StaticResource Delete}"
+                          Caliburn:Message.Attach="Exit"/>
             </MenuItem>
             
             <MenuItem Header="_Navigation" ItemsSource="{Binding TabConductorViewModel.Items, Mode=OneTime}">

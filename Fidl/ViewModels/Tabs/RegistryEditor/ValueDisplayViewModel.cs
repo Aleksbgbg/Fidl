@@ -56,8 +56,8 @@
                         break;
 
                     case NotifyCollectionChangedAction.Replace:
-                        SubscribeNewItems();
                         UnsubscribeOldItems();
+                        SubscribeNewItems();
                         break;
 
                     case NotifyCollectionChangedAction.Reset:

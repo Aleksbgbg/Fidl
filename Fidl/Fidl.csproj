@@ -100,7 +100,7 @@
     <Compile Include="Helpers\LogicalStringComparer.cs" />
     <Compile Include="Models\DriveManager\FileSystem.cs" />
     <Compile Include="Helpers\DriveManager\FileSystemNamingConvention.cs" />
-    <Compile Include="Helpers\ImageButtonHelper.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\RunCommandHelper.cs" />
     <Compile Include="Models\DriveManager\Drive.cs" />
