@@ -3,6 +3,7 @@
     using Caliburn.Micro;
 
     using Fidl.Services.Interfaces;
+    using Fidl.ViewModels.Dialogs.Interfaces;
     using Fidl.ViewModels.Interfaces;
 
     internal class DialogService : IDialogService
@@ -14,13 +15,20 @@
             _windowManager = windowManager;
         }
 
-        public void ShowDialog(string title, string message)
+        public void ShowDialog<TDialogViewModel>()
         {
-            IDialogViewModel dialogViewModel = IoC.Get<IDialogViewModel>();
-            dialogViewModel.DisplayName = title;
-            dialogViewModel.Message = message;
+            TDialogViewModel dialogViewModel = IoC.Get<TDialogViewModel>();
 
             _windowManager.ShowDialog(dialogViewModel);
+        }
+
+        public void ShowErrorDialog(string title, string message)
+        {
+            IErrorDialogViewModel errorDialogViewModel = IoC.Get<IErrorDialogViewModel>();
+            errorDialogViewModel.DisplayName = title;
+            errorDialogViewModel.Message = message;
+
+            _windowManager.ShowDialog(errorDialogViewModel);
         }
     }
 }

@@ -108,7 +108,7 @@
 
             if (NewName == string.Empty || Value.RegistryKey.GetValueNames().Contains(NewName))
             {
-                _dialogService.ShowDialog("Invalid Name", "The entered value name is invalid.");
+                _dialogService.ShowErrorDialog("Invalid Name", "The entered value name is invalid.");
                 return;
             }
 

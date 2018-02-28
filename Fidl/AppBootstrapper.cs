@@ -13,6 +13,8 @@
     using Fidl.Utilities;
     using Fidl.Utilities.Interfaces;
     using Fidl.ViewModels;
+    using Fidl.ViewModels.Dialogs;
+    using Fidl.ViewModels.Dialogs.Interfaces;
     using Fidl.ViewModels.Interfaces;
     using Fidl.ViewModels.Tabs.DriveManager;
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
@@ -58,7 +60,7 @@
             _container.Singleton<IMainViewModel, MainViewModel>();
             _container.Singleton<ITabConductorViewModel, TabConductorViewModel>();
 
-            _container.PerRequest<IDialogViewModel, DialogViewModel>();
+            _container.PerRequest<IErrorDialogViewModel, ErrorDialogViewModel>();
 
             // Tab ViewModels
             // Start tab

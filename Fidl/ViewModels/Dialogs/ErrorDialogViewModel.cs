@@ -1,8 +1,8 @@
-﻿namespace Fidl.ViewModels
+﻿namespace Fidl.ViewModels.Dialogs
 {
-    using Fidl.ViewModels.Interfaces;
+    using Fidl.ViewModels.Dialogs.Interfaces;
 
-    internal class DialogViewModel : ViewModelBase, IDialogViewModel
+    internal class ErrorDialogViewModel : ViewModelBase, IErrorDialogViewModel
     {
         private string _message;
         public string Message

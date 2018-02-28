@@ -2,6 +2,8 @@
 {
     internal interface IDialogService
     {
-        void ShowDialog(string title, string message);
+        void ShowDialog<TDialogViewModel>();
+
+        void ShowErrorDialog(string title, string message);
     }
 }

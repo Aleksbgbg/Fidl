@@ -117,8 +117,8 @@
     <Compile Include="Services\Interfaces\IIniService.cs" />
     <Compile Include="Utilities\ApplicationInfo.cs" />
     <Compile Include="Utilities\Interfaces\IApplicationInfo.cs" />
-    <Compile Include="ViewModels\DialogViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\ErrorDialogViewModel.cs" />
+    <Compile Include="ViewModels\Dialogs\Interfaces\IErrorDialogViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\DriveConductorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\DriveManagerViewModel.cs" />
     <Compile Include="ViewModels\Tabs\DriveManager\DriveViewModel.cs" />
@@ -137,8 +137,8 @@
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
-    <Compile Include="Views\DialogView.xaml.cs">
-      <DependentUpon>DialogView.xaml</DependentUpon>
+    <Compile Include="Views\Dialogs\ErrorDialogView.xaml.cs">
+      <DependentUpon>ErrorDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TabConductorView.xaml.cs">
       <DependentUpon>TabConductorView.xaml</DependentUpon>
@@ -164,7 +164,7 @@
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\DialogView.xaml">
+    <Page Include="Views\Dialogs\ErrorDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
