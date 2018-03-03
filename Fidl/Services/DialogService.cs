@@ -15,7 +15,7 @@
             _windowManager = windowManager;
         }
 
-        public void ShowDialog<TDialogViewModel>()
+        public void ShowDialog<TDialogViewModel>() where TDialogViewModel : IViewModelBase
         {
             TDialogViewModel dialogViewModel = IoC.Get<TDialogViewModel>();
 

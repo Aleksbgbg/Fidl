@@ -1,8 +1,10 @@
 ﻿namespace Fidl.Services.Interfaces
 {
+    using Fidl.ViewModels.Interfaces;
+
     internal interface IDialogService
     {
-        void ShowDialog<TDialogViewModel>();
+        void ShowDialog<TDialogViewModel>() where TDialogViewModel : IViewModelBase;
 
         void ShowErrorDialog(string title, string message);
     }
