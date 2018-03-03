@@ -22,6 +22,11 @@
             _windowManager.ShowDialog(dialogViewModel);
         }
 
+        public void ShowDialog<TDialogViewModel>(TDialogViewModel dialogViewModel) where TDialogViewModel : IViewModelBase
+        {
+            _windowManager.ShowDialog(dialogViewModel);
+        }
+
         public void ShowErrorDialog(string title, string message)
         {
             IErrorDialogViewModel errorDialogViewModel = IoC.Get<IErrorDialogViewModel>();
