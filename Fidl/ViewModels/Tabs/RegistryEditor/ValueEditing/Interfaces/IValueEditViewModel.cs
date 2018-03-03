@@ -4,6 +4,6 @@
 
     internal interface IValueEditViewModel : IViewModelBase
     {
-        object Value { get; }
+        object StoredValue { get; }
     }
 }
