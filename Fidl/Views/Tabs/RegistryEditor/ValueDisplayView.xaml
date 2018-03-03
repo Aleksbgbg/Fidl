@@ -83,6 +83,11 @@
                 <Setter Property="ContextMenu">
                     <Setter.Value>
                         <ContextMenu Caliburn:Action.TargetWithoutContext="{Binding Mode=OneTime}">
+                            <MenuItem Header="Modify" FontWeight="DemiBold"
+                                      Caliburn:Message.Attach="Modify"/>
+
+                            <Separator/>
+
                             <MenuItem Header="Delete" Helpers:ImageHelper.AttachImage="{StaticResource Delete}"
                                       Caliburn:Message.Attach="Delete"/>
                             <MenuItem Header="Rename" Helpers:ImageHelper.AttachImage="{StaticResource EditFile}"

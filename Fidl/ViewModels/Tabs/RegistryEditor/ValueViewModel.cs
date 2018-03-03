@@ -5,18 +5,25 @@
     using System.Windows.Input;
 
     using Fidl.EventArgs.RegistryEditor;
+    using Fidl.Factories.Interfaces;
     using Fidl.Models.RegistryEditor;
     using Fidl.Services.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
+    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
+
+    using Microsoft.Win32;
 
     using Key = System.Windows.Input.Key;
 
     internal class ValueViewModel : ViewModelBase, IValueViewModel
     {
+        private readonly IRegistryFactory _registryFactory;
+
         private readonly IDialogService _dialogService;
 
-        public ValueViewModel(IDialogService dialogService)
+        public ValueViewModel(IRegistryFactory registryFactory, IDialogService dialogService)
         {
+            _registryFactory = registryFactory;
             _dialogService = dialogService;
         }
 
@@ -57,6 +64,29 @@
             Value = value;
             NewName = Value.Name;
             DisplayName = Value.Name;
+        }
+
+        public void Modify()
+        {
+            switch (Value.Kind)
+            {
+                case RegistryValueKind.String:
+                case RegistryValueKind.ExpandString:
+                    _dialogService.ShowDialog(_registryFactory.MakeValueEditViewModel<IStringEditViewModel>(Value.StoredValue));
+                    break;
+
+                case RegistryValueKind.Binary:
+                case RegistryValueKind.Unknown:
+                case RegistryValueKind.None:
+                    break;
+
+                case RegistryValueKind.DWord:
+                case RegistryValueKind.QWord:
+                    break;
+
+                case RegistryValueKind.MultiString:
+                    break;
+            }
         }
 
         public void Delete()

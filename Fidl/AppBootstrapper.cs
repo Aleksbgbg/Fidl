@@ -20,6 +20,8 @@
     using Fidl.ViewModels.Tabs.DriveManager.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
+    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing;
+    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
     using Fidl.ViewModels.Tabs.Start;
     using Fidl.ViewModels.Tabs.Start.Interfaces;
 
@@ -80,6 +82,10 @@
 
             _container.PerRequest<IKeyNodeViewModel, KeyNodeViewModel>();
             _container.PerRequest<IValueViewModel, ValueViewModel>();
+
+            _container.PerRequest<IEditValueViewModel, EditValueViewModel>();
+
+            _container.PerRequest<IStringEditViewModel, StringEditViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
