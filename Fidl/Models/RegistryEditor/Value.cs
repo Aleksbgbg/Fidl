@@ -50,7 +50,24 @@
 
         public RegistryValueKind Kind { get; }
 
-        public object StoredValue { get; }
+        private object _storedValue;
+        public object StoredValue
+        {
+            get => _storedValue;
+
+            set
+            {
+                if (_storedValue == value) return;
+
+                _storedValue = value;
+                NotifyOfPropertyChange(() => StoredValue);
+
+                using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
+                {
+                    writeableKey.SetValue(Name, _storedValue);
+                }
+            }
+        }
 
         internal RegistryKey RegistryKey { get; }
 

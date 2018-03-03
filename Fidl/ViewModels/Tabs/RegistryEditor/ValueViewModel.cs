@@ -72,7 +72,11 @@
             {
                 case RegistryValueKind.String:
                 case RegistryValueKind.ExpandString:
-                    _dialogService.ShowDialog(_registryFactory.MakeValueEditViewModel<IStringEditViewModel>(Value.StoredValue));
+                    {
+                        IStringEditViewModel stringEditViewModel = _registryFactory.MakeValueEditViewModel<IStringEditViewModel>(Value.StoredValue);
+                        _dialogService.ShowDialog(stringEditViewModel);
+                        Value.StoredValue = stringEditViewModel.Value;
+                    }
                     break;
 
                 case RegistryValueKind.Binary:

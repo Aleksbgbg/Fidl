@@ -46,8 +46,9 @@
                 
                 <GridViewColumn Header="Value">
                     <GridViewColumn.DisplayMemberBinding>
-                        <MultiBinding Converter="{x:Static RegistryEditorConverters:RegistryValueDisplayConverter.Default}" Mode="OneTime">
-                            <Binding Path="Value.StoredValue" Mode="OneTime"
+                        <MultiBinding Converter="{x:Static RegistryEditorConverters:RegistryValueDisplayConverter.Default}"
+                                      Mode="OneWay">
+                            <Binding Path="Value.StoredValue" Mode="OneWay"
                                      Converter="{x:Static RegistryEditorConverters:RegistryValueConverter.Default}"/>
                             <Binding Path="Value.Kind" Mode="OneTime"/>
                         </MultiBinding>
