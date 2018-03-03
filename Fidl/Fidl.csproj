@@ -134,6 +134,8 @@
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryEditorViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\RegistryTreeViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueDisplayViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\Interfaces\IValueEditViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\ValueEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
@@ -336,7 +338,9 @@
   <ItemGroup>
     <Resource Include="Images\Edit File.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Tabs\RegistryEditor\ValueEditing\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
