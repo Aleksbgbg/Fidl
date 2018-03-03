@@ -1,11 +1,12 @@
 ﻿namespace Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces
 {
+    using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Interfaces;
 
     internal interface IValueEditViewModel : IViewModelBase
     {
-        object StoredValue { get; }
+        Value Value { get; }
 
-        void Initialise(object value);
+        void Initialise(Value value);
     }
 }

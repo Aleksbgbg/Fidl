@@ -68,29 +68,7 @@
 
         public void Modify()
         {
-            switch (Value.Kind)
-            {
-                case RegistryValueKind.String:
-                case RegistryValueKind.ExpandString:
-                    {
-                        IStringEditViewModel stringEditViewModel = _registryFactory.MakeValueEditViewModel<IStringEditViewModel>(Value.StoredValue);
-                        _dialogService.ShowDialog(stringEditViewModel);
-                        Value.StoredValue = stringEditViewModel.Value;
-                    }
-                    break;
-
-                case RegistryValueKind.Binary:
-                case RegistryValueKind.Unknown:
-                case RegistryValueKind.None:
-                    break;
-
-                case RegistryValueKind.DWord:
-                case RegistryValueKind.QWord:
-                    break;
-
-                case RegistryValueKind.MultiString:
-                    break;
-            }
+            _dialogService.ShowDialog(_registryFactory.MakeEditValueViewModel(Value));
         }
 
         public void Delete()

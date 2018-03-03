@@ -17,9 +17,7 @@
 
         public void ShowDialog<TDialogViewModel>() where TDialogViewModel : IViewModelBase
         {
-            TDialogViewModel dialogViewModel = IoC.Get<TDialogViewModel>();
-
-            _windowManager.ShowDialog(dialogViewModel);
+            ShowDialog(IoC.Get<TDialogViewModel>());
         }
 
         public void ShowDialog<TDialogViewModel>(TDialogViewModel dialogViewModel) where TDialogViewModel : IViewModelBase

@@ -6,5 +6,5 @@
 			 xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ValueEditing:StringEditViewModel}">
-    <TextBox Text="{Binding Value}"/>
+    <TextBox Text="{Binding Value.StoredValue}"/>
 </UserControl>

@@ -25,7 +25,15 @@
             return valueViewModel;
         }
 
-        public TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(object value) where TValueEditViewModel : IValueEditViewModel
+        public IEditValueViewModel MakeEditValueViewModel(Value value)
+        {
+            IEditValueViewModel editValueViewModel = IoC.Get<IEditValueViewModel>();
+            editValueViewModel.Initialise(value);
+
+            return editValueViewModel;
+        }
+
+        public TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(Value value) where TValueEditViewModel : IValueEditViewModel
         {
             TValueEditViewModel valueEditViewModel = IoC.Get<TValueEditViewModel>();
             valueEditViewModel.Initialise(value);

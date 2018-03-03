@@ -2,6 +2,5 @@
 {
     internal interface IStringEditViewModel : IValueEditViewModel
     {
-        string Value { get; }
     }
 }

@@ -14,7 +14,7 @@
 
             Name = string.Empty;
             Kind = RegistryValueKind.String;
-            StoredValue = null;
+            ActualValue = null;
         }
 
         internal Value(RegistryKey registryKey, string name)
@@ -26,12 +26,12 @@
             if (registryKey == null)
             {
                 Kind = RegistryValueKind.String;
-                StoredValue = null;
+                ActualValue = null;
                 return;
             }
 
             Kind = registryKey.GetValueKind(name);
-            StoredValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames);
+            ActualValue = registryKey.GetValue(name, null, RegistryValueOptions.DoNotExpandEnvironmentNames);
         }
 
         private string _name;
@@ -60,16 +60,45 @@
                 if (_storedValue == value) return;
 
                 _storedValue = value;
-                NotifyOfPropertyChange(() => StoredValue);
+                // NotifyOfPropertyChange(() => StoredValue);
+            }
+        }
 
-                using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
-                {
-                    writeableKey.SetValue(Name, _storedValue);
-                }
+        private object _actualValue;
+        public object ActualValue
+        {
+            get => _actualValue;
+
+            private set
+            {
+                if (_actualValue == value) return;
+
+                _actualValue = value;
+                // NotifyOfPropertyChange(() => ActualValue);
+
+                StoredValue = _actualValue;
+                NotifyOfPropertyChange(() => StoredValue);
             }
         }
 
         internal RegistryKey RegistryKey { get; }
+
+        internal void FlushStoredValue()
+        {
+            if (ActualValue == StoredValue) return;
+
+            using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
+            {
+                writeableKey.SetValue(Name, StoredValue, Kind);
+            }
+
+            ActualValue = StoredValue;
+        }
+
+        internal void ResetStoredValue()
+        {
+            StoredValue = ActualValue;
+        }
 
         internal void Delete()
         {
@@ -86,7 +115,7 @@
             using (RegistryKey writeableKey = RegistryKey.GetWriteableKey())
             {
                 writeableKey.DeleteValue(Name);
-                writeableKey.SetValue(newName, StoredValue, Kind);
+                writeableKey.SetValue(newName, ActualValue, Kind);
             }
 
             Name = newName;

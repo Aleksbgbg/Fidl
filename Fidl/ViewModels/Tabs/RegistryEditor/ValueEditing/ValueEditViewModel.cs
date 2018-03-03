@@ -1,14 +1,15 @@
 ﻿namespace Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing
 {
+    using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
     internal abstract class ValueEditViewModel : ViewModelBase, IValueEditViewModel
     {
-        public abstract object StoredValue { get; set; }
+        public Value Value { get; private set; }
 
-        public void Initialise(object value)
+        public void Initialise(Value value)
         {
-            StoredValue = value;
+            Value = value;
         }
     }
 }

@@ -6,9 +6,28 @@
         xmlns:Caliburn="http://www.caliburnproject.org"
         xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
         mc:Ignorable="d"
-		d:DataContext="{d:DesignInstance ValueEditing:ValueEditViewModel}">
-    <DockPanel>
-        <TextBlock Text="Value:"/>
-        <ContentControl Caliburn:View.Model="{Binding ValueEditViewModel}"/>
+		d:DataContext="{d:DesignInstance ValueEditing:ValueEditViewModel}"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Width="250" Height="150">
+    <DockPanel Margin="5">
+        <TextBlock DockPanel.Dock="Top" Text="Name:"/>
+        <TextBox DockPanel.Dock="Top"
+                 Text="{Binding ValueEditViewModel.Value.Name, Mode=OneTime}"
+                 IsEnabled="False"/>
+
+        <StackPanel DockPanel.Dock="Top" Margin="0, 5">
+            <TextBlock Text="Value:"/>
+            <ContentControl DockPanel.Dock="Top" Caliburn:View.Model="{Binding ValueEditViewModel, Mode=OneTime}"/>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+            <Button Content="OK" Width="75" Margin="5, 0"
+                    Caliburn:Message.Attach="Ok"/>
+            <Button Content="Cancel" Width="75" Margin="5, 0"
+                    Caliburn:Message.Attach="Cancel"/>
+        </StackPanel>
     </DockPanel>
 </Window>

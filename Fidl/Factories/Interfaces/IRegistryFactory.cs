@@ -10,6 +10,8 @@
 
         IValueViewModel MakeValue(Value value);
 
-        TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(object value) where TValueEditViewModel : IValueEditViewModel;
+        IEditValueViewModel MakeEditValueViewModel(Value value);
+
+        TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(Value value) where TValueEditViewModel : IValueEditViewModel;
     }
 }
