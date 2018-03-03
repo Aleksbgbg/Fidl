@@ -4,6 +4,11 @@
 
     internal abstract class ValueEditViewModel : ViewModelBase, IValueEditViewModel
     {
-        public abstract object StoredValue { get; }
+        public abstract object StoredValue { get; set; }
+
+        public void Initialise(object value)
+        {
+            StoredValue = value;
+        }
     }
 }

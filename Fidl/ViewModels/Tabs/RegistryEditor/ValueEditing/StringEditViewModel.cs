@@ -18,6 +18,11 @@
             }
         }
 
-        public override object StoredValue => Value;
+        public override object StoredValue
+        {
+            get => Value;
+
+            set => Value = (string)value;
+        }
     }
 }

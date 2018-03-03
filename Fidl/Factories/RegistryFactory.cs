@@ -5,6 +5,7 @@
     using Fidl.Factories.Interfaces;
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
+    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
     internal class RegistryFactory : IRegistryFactory
     {
@@ -22,6 +23,14 @@
             valueViewModel.Initialise(value);
 
             return valueViewModel;
+        }
+
+        public TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(object value) where TValueEditViewModel : IValueEditViewModel
+        {
+            TValueEditViewModel valueEditViewModel = IoC.Get<TValueEditViewModel>();
+            valueEditViewModel.Initialise(value);
+
+            return valueEditViewModel;
         }
     }
 }

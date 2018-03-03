@@ -5,5 +5,7 @@
     internal interface IValueEditViewModel : IViewModelBase
     {
         object StoredValue { get; }
+
+        void Initialise(object value);
     }
 }
