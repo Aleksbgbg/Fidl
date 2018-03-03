@@ -85,6 +85,7 @@
                     <Setter.Value>
                         <ContextMenu Caliburn:Action.TargetWithoutContext="{Binding Mode=OneTime}">
                             <MenuItem Header="Modify" FontWeight="DemiBold"
+                                      Helpers:ImageHelper.AttachImage="{StaticResource Edit}"
                                       Caliburn:Message.Attach="Modify"/>
 
                             <Separator/>

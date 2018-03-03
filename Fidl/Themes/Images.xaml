@@ -3,6 +3,7 @@
 	<BitmapImage x:Key="Camera" UriSource="/Images/Camera.png"/>
 	<BitmapImage x:Key="Computer" UriSource="/Images/Computer.png"/>
 	<BitmapImage x:Key="Delete" UriSource="/Images/Delete.png"/>
+	<BitmapImage x:Key="Edit" UriSource="/Images/Edit.png"/>
 	<BitmapImage x:Key="EditFile" UriSource="/Images/Edit File.png"/>
 	<BitmapImage x:Key="Erase" UriSource="/Images/Erase.png"/>
 	<BitmapImage x:Key="Folder" UriSource="/Images/Folder.png"/>
