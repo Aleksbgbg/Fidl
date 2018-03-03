@@ -1,16 +1,17 @@
-﻿namespace Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing
+﻿namespace Fidl.ViewModels.Dialogs
 {
     using Fidl.Factories.Interfaces;
     using Fidl.Models.RegistryEditor;
+    using Fidl.ViewModels.Dialogs.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
     using Microsoft.Win32;
 
-    internal class EditValueViewModel : ViewModelBase, IEditValueViewModel
+    internal class EditValueDialogViewModel : ViewModelBase, IEditValueDialogViewModel
     {
         private readonly IRegistryFactory _registryFactory;
 
-        public EditValueViewModel(IRegistryFactory registryFactory)
+        public EditValueDialogViewModel(IRegistryFactory registryFactory)
         {
             _registryFactory = registryFactory;
         }

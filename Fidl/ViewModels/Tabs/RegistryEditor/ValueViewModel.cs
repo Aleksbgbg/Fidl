@@ -9,9 +9,6 @@
     using Fidl.Models.RegistryEditor;
     using Fidl.Services.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
-    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
-
-    using Microsoft.Win32;
 
     using Key = System.Windows.Input.Key;
 

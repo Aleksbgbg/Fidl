@@ -1,9 +1,10 @@
-﻿namespace Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces
+﻿namespace Fidl.ViewModels.Dialogs.Interfaces
 {
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Interfaces;
+    using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
-    internal interface IEditValueViewModel : IViewModelBase
+    internal interface IEditValueDialogViewModel : IViewModelBase
     {
         IValueEditViewModel ValueEditViewModel { get; }
 

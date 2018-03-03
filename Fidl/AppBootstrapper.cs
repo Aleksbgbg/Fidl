@@ -83,7 +83,7 @@
             _container.PerRequest<IKeyNodeViewModel, KeyNodeViewModel>();
             _container.PerRequest<IValueViewModel, ValueViewModel>();
 
-            _container.PerRequest<IEditValueViewModel, EditValueViewModel>();
+            _container.PerRequest<IEditValueDialogViewModel, EditValueDialogViewModel>();
 
             _container.PerRequest<IStringEditViewModel, StringEditViewModel>();
         }

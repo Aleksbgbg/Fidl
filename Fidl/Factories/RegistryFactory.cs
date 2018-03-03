@@ -4,6 +4,7 @@
 
     using Fidl.Factories.Interfaces;
     using Fidl.Models.RegistryEditor;
+    using Fidl.ViewModels.Dialogs.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor.Interfaces;
     using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
@@ -25,12 +26,12 @@
             return valueViewModel;
         }
 
-        public IEditValueViewModel MakeEditValueViewModel(Value value)
+        public IEditValueDialogViewModel MakeEditValueViewModel(Value value)
         {
-            IEditValueViewModel editValueViewModel = IoC.Get<IEditValueViewModel>();
-            editValueViewModel.Initialise(value);
+            IEditValueDialogViewModel editValueDialogViewModel = IoC.Get<IEditValueDialogViewModel>();
+            editValueDialogViewModel.Initialise(value);
 
-            return editValueViewModel;
+            return editValueDialogViewModel;
         }
 
         public TValueEditViewModel MakeValueEditViewModel<TValueEditViewModel>(Value value) where TValueEditViewModel : IValueEditViewModel
