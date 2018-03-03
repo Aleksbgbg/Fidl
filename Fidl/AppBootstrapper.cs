@@ -86,6 +86,7 @@
             _container.PerRequest<IEditValueDialogViewModel, EditValueDialogViewModel>();
 
             _container.PerRequest<IStringEditViewModel, StringEditViewModel>();
+            _container.PerRequest<IMultiStringEditViewModel, MultiStringEditViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

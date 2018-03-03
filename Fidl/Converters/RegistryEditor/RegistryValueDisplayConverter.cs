@@ -40,7 +40,7 @@
                     return $"0x{values[0]:X16} ({values[0]:N0})";
 
                 case RegistryValueKind.MultiString:
-                    return string.Join(" ", (string[])values[0]);
+                    return string.Join(" ", (string[])values[0]).Replace("\r", string.Empty);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(values), values, "RegistryValueKind is invalid.");

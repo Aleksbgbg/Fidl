@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="Fidl.Views.Tabs.RegistryEditor.ValueEditing.MultiStringEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor"
+			 xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance ValueEditing:MultiStringEditViewModel}">
+    <TextBox Text="{Binding Value.StoredValue, Converter={x:Static Converters:StringArrayToTextConverter.Default}}"
+             AcceptsReturn="True" MaxLines="10" VerticalScrollBarVisibility="Auto"/>
+</UserControl>

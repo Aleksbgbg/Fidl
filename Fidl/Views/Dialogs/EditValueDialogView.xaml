@@ -10,7 +10,8 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
-        Width="250" Height="150">
+        SizeToContent="Height"
+        Width="350">
     <DockPanel Margin="5">
         <TextBlock DockPanel.Dock="Top" Text="Name:"/>
         <TextBox DockPanel.Dock="Top"

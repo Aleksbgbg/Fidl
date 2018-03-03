@@ -37,6 +37,7 @@
                     break;
 
                 case RegistryValueKind.MultiString:
+                    ValueEditViewModel = _registryFactory.MakeValueEditViewModel<IMultiStringEditViewModel>(value);
                     break;
             }
 
