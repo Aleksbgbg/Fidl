@@ -27,17 +27,15 @@
                     ValueEditViewModel = _registryFactory.MakeValueEditViewModel<IStringEditViewModel>(value);
                     break;
 
-                case RegistryValueKind.Binary:
-                case RegistryValueKind.Unknown:
-                case RegistryValueKind.None:
-                    break;
-
                 case RegistryValueKind.DWord:
                 case RegistryValueKind.QWord:
                     break;
 
                 case RegistryValueKind.MultiString:
                     ValueEditViewModel = _registryFactory.MakeValueEditViewModel<IMultiStringEditViewModel>(value);
+                    break;
+
+                default:
                     break;
             }
 

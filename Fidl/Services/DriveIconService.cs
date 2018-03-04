@@ -59,11 +59,13 @@
             string iconFile = Path.Combine(iconDirectory, IconFileName);
             string autorunPath = Path.Combine(drivePath, AutorunFileName);
 
-            string[] fileSystemEntries = { iconDirectory, iconFile, autorunPath };
+            string[] fileSystemEntries = new string[] { iconDirectory, iconFile, autorunPath }
+                                         .Where(fileSystemEntry => File.Exists(fileSystemEntry) || Directory.Exists(fileSystemEntry))
+                                         .ToArray();
 
             void SetAttributes(FileAttributes fileAttributes)
             {
-                foreach (string fileSystemEntry in fileSystemEntries.Where(fileSystemEntry => File.Exists(fileSystemEntry) || Directory.Exists(fileSystemEntry)))
+                foreach (string fileSystemEntry in fileSystemEntries)
                 {
                     File.SetAttributes(fileSystemEntry, fileAttributes);
                 }
