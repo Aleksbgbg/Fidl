@@ -34,10 +34,10 @@
                 }
 
                 case RegistryValueKind.DWord:
-                    return $"0x{values[0]:X8} ({values[0]:N0})";
+                    return $"0x{values[0]:X8} ({(uint)(int)values[0]:N0})";
 
                 case RegistryValueKind.QWord:
-                    return $"0x{values[0]:X16} ({values[0]:N0})";
+                    return $"0x{values[0]:X16} ({(ulong)(long)values[0]:N0})";
 
                 case RegistryValueKind.MultiString:
                     return string.Join(" ", (string[])values[0]).Replace("\r", string.Empty);
