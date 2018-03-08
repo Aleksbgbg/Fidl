@@ -5,5 +5,9 @@
     internal interface IWordEditViewModel : IValueEditViewModel
     {
         Base WordBase { get; set; }
+
+        string InputValue { get; set; }
+
+        int MaxInputValueLength { get; }
     }
 }

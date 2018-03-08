@@ -1,18 +1,21 @@
 ﻿namespace Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing
 {
     using System;
+    using System.Collections.Generic;
     using System.Globalization;
 
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
 
+    using Microsoft.Win32;
+
     internal class WordEditViewModel : ValueEditViewModel, IWordEditViewModel
     {
+        private const int DecDwordMaxValueLength = 10;
+        private const int DecQwordMaxValueLength = 20;
+
         private const int HexDwordMaxValueLength = 8;
         private const int HexQwordMaxValueLength = 16;
-
-        private const int DecDwordMaxValueLength = 10;
-        private const int HexQwordMaxValueLength = 8;
 
         private Base _wordBase = Base.Hex;
         public Base WordBase
@@ -26,19 +29,14 @@
                 _wordBase = value;
                 NotifyOfPropertyChange(() => WordBase);
 
-                switch (_wordBase)
+                PerformActionsByBase(new Dictionary<ActionByBase, Action>
                 {
-                    case Base.Dec:
-                        MaxInputValueLength = ;
-                        break;
+                        [ActionByBase.DecDword] = () => MaxInputValueLength = DecDwordMaxValueLength,
+                        [ActionByBase.DecQword] = () => MaxInputValueLength = DecQwordMaxValueLength,
 
-                    case Base.Hex:
-                        MaxInputValueLength = ;
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(WordBase), WordBase, "WordBase should be either Dec or Hex.");
-                }
+                        [ActionByBase.HexDword] = () => MaxInputValueLength = HexDwordMaxValueLength,
+                        [ActionByBase.HexQword] = () => MaxInputValueLength = HexQwordMaxValueLength
+                });
             }
         }
 
@@ -54,19 +52,14 @@
                 _inputValue = value;
                 NotifyOfPropertyChange(() => InputValue);
 
-                switch (WordBase)
+                PerformActionsByBase(new Dictionary<ActionByBase, Action>
                 {
-                    case Base.Dec:
-                        Value.StoredValue = int.Parse(_inputValue);
-                        break;
+                        [ActionByBase.DecDword] = () => Value.StoredValue = uint.Parse(_inputValue),
+                        [ActionByBase.DecQword] = () => Value.StoredValue = ulong.Parse(_inputValue),
 
-                    case Base.Hex:
-                        Value.StoredValue = int.Parse(_inputValue, NumberStyles.HexNumber);
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException(nameof(WordBase), WordBase, "WordBase should be either Dec or Hex.");
-                }
+                        [ActionByBase.HexDword] = () => Value.StoredValue = uint.Parse(_inputValue, NumberStyles.HexNumber),
+                        [ActionByBase.HexQword] = () => Value.StoredValue = ulong.Parse(_inputValue, NumberStyles.HexNumber)
+                });
             }
         }
 
@@ -75,13 +68,57 @@
         {
             get => _maxInputValueLength;
 
-            set
+            private set
             {
                 if (_maxInputValueLength == value) return;
 
                 _maxInputValueLength = value;
                 NotifyOfPropertyChange(() => MaxInputValueLength);
             }
+        }
+
+        // Aims to simplify repetitive code with functional programming
+        private void PerformActionsByBase(IReadOnlyDictionary<ActionByBase, Action> actions)
+        {
+            void PerformWordActions(Action dwordAction, Action qwordAction)
+            {
+                switch (Value.Kind)
+                {
+                    case RegistryValueKind.DWord:
+                        dwordAction();
+                        break;
+
+                    case RegistryValueKind.QWord:
+                        qwordAction();
+                        break;
+
+                    default:
+                        throw new ArgumentOutOfRangeException(nameof(Value.Kind), Value.Kind, "Value Kind should be either DWord or QWord");
+                }
+            }
+
+            switch (WordBase)
+            {
+                case Base.Dec:
+                    PerformWordActions(actions[ActionByBase.DecDword], actions[ActionByBase.DecQword]);
+                    break;
+
+                case Base.Hex:
+                    PerformWordActions(actions[ActionByBase.HexDword], actions[ActionByBase.HexQword]);
+                    break;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(WordBase), WordBase, "WordBase should be either Dec or Hex.");
+            }
+        }
+
+        private enum ActionByBase
+        {
+            DecDword = Base.Dec * 32,
+            DecQword = Base.Dec * 64,
+
+            HexDword = Base.Hex * 32,
+            HexQword = Base.Hex * 64
         }
     }
 }

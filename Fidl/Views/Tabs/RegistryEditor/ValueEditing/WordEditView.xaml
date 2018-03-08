@@ -11,17 +11,19 @@
     <DockPanel>
         <GroupBox DockPanel.Dock="Right" Header="Base" Margin="5, 0, 0, 0">
             <StackPanel>
-                <RadioButton GroupName="RegistryEditor-Base" Content="Hexadecimal"
+                <RadioButton Content="Hexadecimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
                     ConverterParameter={x:Static Models:Base.Hex}}"/>
-                <RadioButton GroupName="RegistryEditor-Base" Content="Decimal"
+                <RadioButton Content="Decimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
                     ConverterParameter={x:Static Models:Base.Dec}}"/>
             </StackPanel>
         </GroupBox>
 
-        <TextBox Text="{Binding InputValue}" VerticalAlignment="Center"/>
+        <TextBox Text="{Binding InputValue}"
+                 MaxLength="{Binding MaxInputValueLength, Mode=OneWay}"
+                 VerticalAlignment="Center"/>
     </DockPanel>
 </UserControl>
