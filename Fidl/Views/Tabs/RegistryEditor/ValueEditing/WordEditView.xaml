@@ -8,21 +8,19 @@
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ValueEditing:WordEditViewModel}">
     <DockPanel>
-        <TextBox Text="{Binding InputValue}" VerticalAlignment="Center"/>
-
-        <GroupBox Header="Base" Margin="5, 0, 0, 0">
+        <GroupBox DockPanel.Dock="Right" Header="Base" Margin="5, 0, 0, 0">
             <StackPanel>
-                <RadioButton GroupName="RegistryEditor-Base"
-                             Content="Hexadecimal"
+                <RadioButton GroupName="RegistryEditor-Base" Content="Hexadecimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
                     ConverterParameter='Hex'}"/>
-                <RadioButton GroupName="RegistryEditor-Base"
-                             Content="Decimal"
+                <RadioButton GroupName="RegistryEditor-Base" Content="Decimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
                     ConverterParameter='Dec'}"/>
             </StackPanel>
         </GroupBox>
+
+        <TextBox Text="{Binding InputValue}" VerticalAlignment="Center"/>
     </DockPanel>
 </UserControl>
