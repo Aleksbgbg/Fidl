@@ -93,6 +93,7 @@
     <Compile Include="Converters\RegistryEditor\RegistryValueKindToStringConverter.cs" />
     <Compile Include="Converters\RegistryEditor\RegistryValueNameConverter.cs" />
     <Compile Include="Converters\RegistryEditor\StringArrayToTextConverter.cs" />
+    <Compile Include="Converters\RegistryEditor\ValueEditing\BaseEnumConverter.cs" />
     <Compile Include="Converters\ResourceConverter.cs" />
     <Compile Include="EventArgs\RegistryEditor\ValueDeletedEventArgs.cs" />
     <Compile Include="Extensions\RegistryKeyExtensions.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="Helpers\RunCommandHelper.cs" />
     <Compile Include="Models\DriveManager\Drive.cs" />
+    <Compile Include="Models\RegistryEditor\Base.cs" />
     <Compile Include="Models\RegistryEditor\Key.cs" />
     <Compile Include="Models\RegistryEditor\Value.cs" />
     <Compile Include="Services\DialogService.cs" />
@@ -140,9 +142,11 @@
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\Interfaces\IMultiStringEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\Interfaces\IStringEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\Interfaces\IValueEditViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\Interfaces\IWordEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\MultiStringEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\StringEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\ValueEditViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\RegistryEditor\ValueEditing\WordEditViewModel.cs" />
     <Compile Include="ViewModels\Tabs\RegistryEditor\ValueViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\Interfaces\IStartViewModel.cs" />
     <Compile Include="ViewModels\Tabs\Start\StartViewModel.cs" />
@@ -178,6 +182,9 @@
     </Compile>
     <Compile Include="Views\Dialogs\EditValueDialogView.xaml.cs">
       <DependentUpon>EditValueDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Tabs\RegistryEditor\ValueEditing\WordEditView.xaml.cs">
+      <DependentUpon>WordEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\Start\StartView.xaml.cs">
       <DependentUpon>StartView.xaml</DependentUpon>
@@ -284,6 +291,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Dialogs\EditValueDialogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Tabs\RegistryEditor\ValueEditing\WordEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

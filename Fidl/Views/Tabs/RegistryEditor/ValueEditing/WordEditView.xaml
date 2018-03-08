@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="Fidl.Views.Tabs.RegistryEditor.ValueEditing.WordEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor.ValueEditing"
+			 xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance ValueEditing:WordEditViewModel}">
+    <DockPanel>
+        <TextBox Text="{Binding InputValue}" VerticalAlignment="Center"/>
+
+        <GroupBox Header="Base" Margin="5, 0, 0, 0">
+            <StackPanel>
+                <RadioButton GroupName="RegistryEditor-Base"
+                             Content="Hexadecimal"
+                             IsChecked="{Binding WordBase,
+                    Converter={x:Static Converters:BaseEnumConverter.Default},
+                    ConverterParameter='Hex'}"/>
+                <RadioButton GroupName="RegistryEditor-Base"
+                             Content="Decimal"
+                             IsChecked="{Binding WordBase,
+                    Converter={x:Static Converters:BaseEnumConverter.Default},
+                    ConverterParameter='Dec'}"/>
+            </StackPanel>
+        </GroupBox>
+    </DockPanel>
+</UserControl>

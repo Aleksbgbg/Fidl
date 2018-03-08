@@ -29,6 +29,7 @@
 
                 case RegistryValueKind.DWord:
                 case RegistryValueKind.QWord:
+                    ValueEditViewModel = _registryFactory.MakeValueEditViewModel<IWordEditViewModel>(value);
                     break;
 
                 case RegistryValueKind.MultiString:
