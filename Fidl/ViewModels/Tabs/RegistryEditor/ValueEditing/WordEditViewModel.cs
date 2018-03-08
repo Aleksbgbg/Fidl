@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Windows.Input;
 
     using Fidl.Models.RegistryEditor;
     using Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing.Interfaces;
@@ -74,6 +75,25 @@
 
                 _maxInputValueLength = value;
                 NotifyOfPropertyChange(() => MaxInputValueLength);
+            }
+        }
+
+        public void PreviewTextInput(TextCompositionEventArgs e)
+        {
+            bool isValid = false;
+
+            PerformActionsByBase(new Dictionary<ActionByBase, Action>
+            {
+                    [ActionByBase.DecDword] = () => isValid = uint.TryParse(e.Text, out uint result),
+                    [ActionByBase.DecQword] = () => isValid = ulong.TryParse(e.Text, out ulong result),
+
+                    [ActionByBase.HexDword] = () => isValid = uint.TryParse(e.Text, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out uint result),
+                    [ActionByBase.HexQword] = () => isValid = ulong.TryParse(e.Text, NumberStyles.HexNumber, CultureInfo.CurrentCulture, out ulong result)
+            });
+
+            if (!isValid)
+            {
+                e.Handled = true;
             }
         }
 

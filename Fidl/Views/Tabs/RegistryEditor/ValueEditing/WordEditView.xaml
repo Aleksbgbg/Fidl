@@ -3,6 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor.ValueEditing"
              xmlns:Models="clr-namespace:Fidl.Models.RegistryEditor"
 			 xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
@@ -24,6 +25,7 @@
 
         <TextBox Text="{Binding InputValue}"
                  MaxLength="{Binding MaxInputValueLength, Mode=OneWay}"
-                 VerticalAlignment="Center"/>
+                 VerticalAlignment="Center"
+                 Caliburn:Message.Attach="[Event PreviewTextInput] = [Action PreviewTextInput($eventArgs)]"/>
     </DockPanel>
 </UserControl>
