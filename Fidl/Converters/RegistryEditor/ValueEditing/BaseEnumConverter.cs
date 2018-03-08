@@ -13,12 +13,12 @@
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Enum.Parse(typeof(Base), (string)parameter).Equals(value);
+            return value.Equals(parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Enum.Parse(typeof(Base), (string)parameter);
+            return (bool)value ? parameter : Binding.DoNothing;
         }
     }
 }

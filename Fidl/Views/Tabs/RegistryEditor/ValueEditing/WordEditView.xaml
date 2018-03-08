@@ -4,6 +4,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Converters="clr-namespace:Fidl.Converters.RegistryEditor.ValueEditing"
+             xmlns:Models="clr-namespace:Fidl.Models.RegistryEditor"
 			 xmlns:ValueEditing="clr-namespace:Fidl.ViewModels.Tabs.RegistryEditor.ValueEditing"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ValueEditing:WordEditViewModel}">
@@ -13,11 +14,11 @@
                 <RadioButton GroupName="RegistryEditor-Base" Content="Hexadecimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
-                    ConverterParameter='Hex'}"/>
+                    ConverterParameter={x:Static Models:Base.Hex}}"/>
                 <RadioButton GroupName="RegistryEditor-Base" Content="Decimal"
                              IsChecked="{Binding WordBase,
                     Converter={x:Static Converters:BaseEnumConverter.Default},
-                    ConverterParameter='Dec'}"/>
+                    ConverterParameter={x:Static Models:Base.Dec}}"/>
             </StackPanel>
         </GroupBox>
 
