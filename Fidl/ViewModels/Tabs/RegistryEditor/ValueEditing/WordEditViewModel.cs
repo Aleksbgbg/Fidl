@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Windows.Input;
 
     using Fidl.Models.RegistryEditor;
@@ -17,6 +18,9 @@
 
         private const int HexDwordMaxValueLength = 8;
         private const int HexQwordMaxValueLength = 16;
+
+        private const string DecValidCharacters = "0123456789";
+        private const string HexValidCharacters = DecValidCharacters + "ABCDEF";
 
         private Base _wordBase = Base.Hex;
         public Base WordBase
@@ -38,6 +42,30 @@
                         [ActionByBase.HexDword] = () => MaxInputValueLength = HexDwordMaxValueLength,
                         [ActionByBase.HexQword] = () => MaxInputValueLength = HexQwordMaxValueLength
                 });
+
+                string FilterInvalidCharacters(string validityFilter)
+                {
+                    return string.Concat(InputValue.Where(character => validityFilter.Contains(character, CaseInsensitiveCharacterComparer.Default)));
+                }
+
+                void DecFilter()
+                {
+                    InputValue = FilterInvalidCharacters(DecValidCharacters);
+                }
+
+                void HexFilter()
+                {
+                    InputValue = FilterInvalidCharacters(HexValidCharacters);
+                }
+
+                PerformActionsByBase(new Dictionary<ActionByBase, Action>
+                {
+                        [ActionByBase.DecDword] = DecFilter,
+                        [ActionByBase.DecQword] = DecFilter,
+
+                        [ActionByBase.HexDword] = HexFilter,
+                        [ActionByBase.HexQword] = HexFilter
+                });
             }
         }
 
@@ -52,6 +80,12 @@
 
                 _inputValue = value;
                 NotifyOfPropertyChange(() => InputValue);
+
+                if (_inputValue == string.Empty)
+                {
+                    Value.StoredValue = 0;
+                    return;
+                }
 
                 PerformActionsByBase(new Dictionary<ActionByBase, Action>
                 {
@@ -139,6 +173,21 @@
 
             HexDword = Base.Hex * 32,
             HexQword = Base.Hex * 64
+        }
+
+        private class CaseInsensitiveCharacterComparer : IEqualityComparer<char>
+        {
+            internal static CaseInsensitiveCharacterComparer Default { get; } = new CaseInsensitiveCharacterComparer();
+
+            public bool Equals(char first, char second)
+            {
+                return first.ToString().Equals(second.ToString(), StringComparison.InvariantCultureIgnoreCase);
+            }
+
+            public int GetHashCode(char character)
+            {
+                return character.GetHashCode();
+            }
         }
     }
 }
